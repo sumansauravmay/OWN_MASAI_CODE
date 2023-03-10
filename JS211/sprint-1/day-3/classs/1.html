@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+<body>
+    <h1>Promise</h1>
+    <input type="text" id="name" />
+    <!-- <input type="number" id="pin" /> -->
+    <input onclick="submit()" type="submit"/>
+</body>
+</html>
+<script>
+//     let p=new Promise((res,rej)=>{
+// rej("rejected!!")
+//     });
+// //     p.then((res)=>{
+// // console.log(res)
+// // })
+//     // console.log(p)
+//     p.catch((rej)=>{
+// console.log(rej)
+// })
+// console.log(p)
+
+
+// sleep(5000)
+// .then((res)=>console.log(res))
+// .catch((rej)=>console.log(rej))
+
+//create a function sleep()
+// return a Promise
+
+
+
+// function sleep(delay){
+//     return new Promise((res,rej)=>{
+//         if(typeof delay !=="number"){
+//             rej("Rejected")
+//         }
+        
+//             setTimeout(() => {
+//             res("Resolved")
+//         },delay);
+    // })
+    //     }
+    
+    
+
+// let data=1234;
+// let submit=()=>{
+    
+//     let pin=document.querySelector("#pin").value;
+
+//     let p=new Promise((res,rej)=>{
+//         if(+pin===data)
+//         {
+// res("Correct Pin !!")
+//         }
+//         else{
+//             rej("Wrong pin !!")
+//         }
+//     });
+//     p.then((res)=>{
+//         console.log(res)
+//     }).catch((rej)=>{
+//         console.log(rej)
+//     }).finally(()=>{
+//          console.log("Promise executed")
+//     })
+// }
+
+
+let seats=100;
+let waiting=105;
+
+setInterval(() => {
+    waiting--;
+    console.log(waiting)
+
+},3000);
+
+let submit=()=>{
+    let name=document.querySelector("#name").value;
+    let w=waiting+1;
+    let p=new Promise((res,rej)=>{
+        setInterval(() => {
+            if(w<=seats)
+        {
+            res("You got a confirmed ticket !!")
+        }
+        else{
+            rej("Waiting !!")
+        }
+        }, 1000);
+    })
+    p.then((res)=>{
+        alert(`${name}, ${res}`)
+        
+    }).catch((rej)=>{
+alert(`${name}, Your ticket is ${rej}`)
+})
+}
+</script>

@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Append</title>
+    <style>
+        .updown{
+            height:250px;
+            width:300px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            background-color: black;
+            margin-left:400px;
+            margin-top:100px;
+        }
+        *{
+            text-align: center;
+        }
+h1{
+    color:teal;
+}
+p{
+    color:yellow;
+}
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+let data=JSON.parse(localStorage.getItem("star"));
+
+
+
+let append=(data)=>{
+
+let container=document.querySelector("#container")
+container.innerHTML=null;
+
+data.forEach((elem)=>{
+    let name=document.createElement("h1")
+name.innerText=elem.name;
+
+let gender=document.createElement("p")
+gender.innerText=`Gender:${elem.gender}`;
+
+let dob=document.createElement("p")
+dob.innerText=`Birth-Yewar:${elem.birth_year}`;
+
+let height=document.createElement("p")
+height.innerText=`Height:${elem.height}`;
+
+let mass=document.createElement("p")
+mass.innerText=`mass:${elem.mass}`;
+
+
+
+let div=document.createElement("div")
+div.setAttribute("class","updown")
+
+div.append(name,dob,gender,height,mass)
+
+container.append(div);
+})
+}
+append(data);
+</script>
+
+
+

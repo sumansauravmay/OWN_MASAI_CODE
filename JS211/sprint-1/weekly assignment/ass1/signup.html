@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <h1>Sign up page</h1>
+    
+        <input type="text" id="name" placeholder="Enter Name here"/>
+        <input type="text" id="email" placeholder="Enter Email here"/>
+        <input type="number" id="password" placeholder="Enter Password here"/>
+        <select id="aduser">
+            <option>Admin</option>
+            <option>User</option>
+        </select>
+        <input type="submit" onclick="submit()"/>
+    
+    <p>have a account?<a href="login.html">Login</a></p>
+</body>
+</html>
+<script>
+    let arr=JSON.parse(localStorage.getItem("signup"))||[];
+    function constructor(n,e,p,s){
+        this.name=n;
+        this.email=e;
+        this.password=p;
+        this.selecter=s;
+    }
+let submit=()=>{
+    let name=document.querySelector("#name").value;
+    let email=document.querySelector("#email").value;
+    let password=document.querySelector("#password").value;
+    let selecter=document.querySelector("#aduser").value;
+
+    let s1=new constructor(name,email,password,selecter);
+    if(checkemails(s1.email===true))
+    {
+        arr.push(s1);
+        localStorage.setItem("signup",JSON.stringify(arr))
+    }
+    else{
+        alert("Account already exist!!")
+    }
+    window.location.href="login.html";
+}
+function checkemails(email)
+{
+    let filter=arr.filter((elem)=>{
+        return email===elem.email;
+    })
+    if(filter.length>0)
+    {
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+</script>

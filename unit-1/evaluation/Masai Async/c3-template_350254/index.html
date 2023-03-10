@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #navbar{
+        display:flex;
+justify-content: space-around;
+
+      }
+      input{
+        font-size: 20px;
+        height:20px;
+      }
+      #filter{
+        font-size: 25px;;
+      }
+      #sort{
+        font-size: 25px;;
+      }
+      
+      #signup{
+        font-size: 20px;
+      }
+      #login{
+        font-size: 20px;
+      }
+      h2{
+        font-size: 40px;
+        color:teal;
+      }
+      #hotels_list{
+        display:grid;
+        grid-template-columns: repeat(2,1fr);
+        gap:10px;
+        /* margin-left:-30px; */
+      }
+      img{
+        width:80%;
+      }
+      *{
+        margin-left:30px;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <h2>Hotel App</h2>
+
+      <input id="query" type="text" placeholder="search hotel"/>
+          <a href="signup.html" id="signup">signup</a>
+          <a href="login.html" id="login">login</a>
+      <!-- the search-box id:- "query"
+ - the log-in and sign-up link will have ids:- "login" and "signup" -->
+    </div>
+    <div id="sorting">
+      <!-- sort by price low to high Id:- "sort_lth"
+ - sort by price high to low Id:- "sort_htl"
+ - Filter Ac hotels Id:- "filter_ac"
+ - Filter Non Ac hotels Id:- "filter_nonac" -->
+ <button id="sort_lth">low to high</button>
+
+ <button id="sort_htl">high to low</button>
+
+ <button id="filter_ac">ac</button>
+ 
+ <button id="filter_nonac">non-ac</button>
+    </div>
+    <br>
+    <div id="home">
+      <div id="hotels_list"></div>
+      <!-- - Append all fetched hotels inside div with id:- "hotels_list"
+ - Every hotel card will have id:-  "hotel"
+ - The book now button will have class as "book" -->
+    </div>
+  </body>
+</html>
+<script src="scripts\index.js">
+
+
+
+
+// image, title, price, rating, ac/non-ac status and a book now button
+// hotels: Array(11)
+// 0:
+// Ac: true
+// Images: {one: 'https://r1imghtlak.mmtcdn.com/bd735e8cff9011e8a611…nsize=910:612&crop=910:612;0,24&output-format=jpg', two: 'https://r1imghtlak.mmtcdn.com/1c32b6bcf87e11e886bd0242ac110003.jpg?downsize=377:200&crop=377:200'}
+// Price: 3700
+// Rating: 3.8
+// Rooms: 19
+// Title: "Ginger Goa Panjim"
+</script>

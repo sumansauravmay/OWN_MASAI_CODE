@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product for Admin</title>
+</head>
+<body>
+    <h1>Admin data</h1>
+    <h2><a href="store.html">User_Details</a></h2>
+    <input type="text" id="product_URL" placeholder="image URL"/> 
+    <input type="text" id="product_Name" placeholder="Product Name"/> 
+    <input type="number" id="product_price" placeholder="Price"/>
+    <input id="submit" onclick="submit()" type="submit"/>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    let arr=JSON.parse(localStorage.getItem("product"))||[];
+    function constructor(i,n,p){
+        this.img=i;
+        this.name=n;
+        this.price=p;
+
+    }
+    let submit=()=>{
+        let img=document.querySelector("#product_URL").value;
+        let name=document.querySelector("#product_Name").value;
+        let price=document.querySelector("#product_price").value;
+
+let s1=new constructor(img,name,price)
+// console.log("s1",s1)
+arr.push(s1);
+// console.log("arr",arr)
+localStorage.setItem("product",JSON.stringify(arr));
+    }
+
+let data=JSON.parse(localStorage.getItem("product"));
+let append=(data)=>{
+let container=document.querySelector("#container");
+
+container.innerHTML=null;
+
+data.forEach((elem,index)=>{
+
+let image=document.createElement("img")
+image.src=elem.img;
+
+let name=document.createElement("h1")
+name.innerText=elem.name;
+
+let price=document.createElement("price")
+price.innerText=elem.price;
+
+let remove=document.createElement("button")
+remove.innerText="Delete"
+remove.onclick=()=>{
+    deltefunc(index)
+}
+
+let div=document.createElement("div")
+
+div.append(image,name,price,remove);
+
+container.append(div);
+
+})
+}
+append(data)
+
+let deltefunc=(index)=>{
+    let data=JSON.parse(localStorage.getItem("product"));
+    data.splice(index,1)
+    localStorage.setItem("product",JSON.stringify(data))
+    append(data)
+}
+
+
+</script>

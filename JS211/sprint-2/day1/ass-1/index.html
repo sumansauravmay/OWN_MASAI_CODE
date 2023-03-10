@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article</title>
+</head>
+<body>
+    <h1>Article</h1>
+    
+    <div id="container"></div>
+</body>
+</html>
+<script>
+
+    let allPromise=[];
+for(let i=1;i<=5;i++)
+{
+let url=`https://jsonmock.hackerrank.com/api/articles?page${i}`;
+let promise=fetch(url).then((res)=>res.json());
+allPromise.push(promise)
+}
+let arr=[];
+let getData=async()=>{
+    let data=await Promise.all(allPromise)
+    for(let i=0;i<data.length;i++){
+        arr.push(...data[i].data) //spread opreator
+    }
+    console.log(arr)
+    append(arr)
+}
+
+
+let append=(data)=>{
+let container=document.querySelector("#container")
+container.innerHTML=null;
+data.forEach((elem)=>{
+
+    let title=document.createElement("h1")
+title.innerText=elem.title;
+
+let author=document.createElement("p")
+author.innerText=elem.author;
+
+let comment=document.createElement("p")
+comment.innerText=elem.num_comments;
+
+let div=document.createElement("div")
+
+div.append(title,author,comment)
+
+container.append(div);
+
+})
+
+}
+
+getData() 
+</script>

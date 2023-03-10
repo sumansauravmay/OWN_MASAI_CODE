@@ -1,0 +1,52 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    
+</head>
+<body>
+<div id="product"></div>
+</body>
+</html>
+<script>
+var cartLSData=JSON.parse(localStorage.getItem("masai-cart"))||[];
+    
+    function display(data){
+        product.innerHTML=null;
+        data.forEach(function(element){
+            var card=document.createElement("div");
+
+            var img=document.createElement("img");
+            img.src=element.img;
+
+            var title=document.createElement("h2");
+            title.textContent=element.brand;
+
+            var category=document.createElement("p")
+            category.textContent=element.catagory;
+
+            var price=document.createElement("h2");
+            price.textContent=element.price;
+
+            var button=document.createElement("button")
+            button.innerText="Delete";
+            button.addEventListener("click",function(event){
+                Delete(element.productID)
+            })
+            
+            card.append(img,title,desc,category,price,button)
+            product.append(card);
+        })
+    }
+    display(cartLSData);
+    function Delete(id){
+cartLSData=cartLSData.filter(function(element){
+    return element.productID!=id
+})
+display (cartLSData);
+localStorage.setItem("masai-cart",JSON.stringify(cartLSData));
+    }
+
+</script>

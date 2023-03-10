@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+</head>
+<body>
+    <h1>Counter</h1>
+    <h2 id="value"></h2>
+    <button id="add-btn">Add</button>
+    <button id="add-btn2">Sub</button>
+</body>
+</html>
+<script>
+//     class Counter{
+//         #value;
+//         constructor(init){
+//         this.#value=init;
+
+//         }
+// get count(){
+//     return this.#value;
+// }
+// set value(newValue){
+//     this.#value=newValue;
+// }
+//     }
+
+// let counter=new Counter(5)
+// counter.value=2
+// // console.log(counter.value)
+// console.log(counter.count)
+// console.log(typeof counter)
+
+
+
+
+// class Counter{
+//         #value;
+//         constructor(init){
+//         this.#value=init;
+
+//         }
+// get count(){
+//     return this.#value;
+// }
+// set count(newValue){
+//     this.#value=newValue;
+// }
+//     }
+
+// let counter=new Counter(5)
+// // counter.value=2
+
+// window.addEventListener("load",()=>{
+//     const value=document.querySelector("#value");
+//     value.innerText=counter.count;
+
+
+//     const btn=document.querySelector("#add-btn")
+//     btn.addEventListener("click",()=>{
+//         counter.count++;
+//         console.log(counter);
+//         value.innerText=counter.count;
+//     })
+
+//     const btn2=document.querySelector("#add-btn2")
+//     btn2.addEventListener("click",()=>{
+//         counter.count--;
+//         console.log(counter);
+//         value.innerText=counter.count;
+//     })
+// })
+
+
+
+
+
+
+
+
+class Counter{
+    //private
+        #value;
+        #onupdateCallback;
+        #addCalllback;
+        constructor(init){
+        this.#value=init;
+        }
+get count(){
+    return this.#value;
+}
+set count(newValue){
+    this.#value=newValue;
+}
+set callback(cb){
+this.#onupdateCallback=cb;
+}
+get callback(){
+    return this.#onupdateCallback;
+}
+    }
+
+let counter=new Counter(0)
+
+window.addEventListener("load",()=>{
+    const value=document.querySelector("#value");
+    value.innerText=counter.count;
+
+
+counter.callback=renderDom;
+
+    const btn=document.querySelector("#add-btn")
+    btn.addEventListener("click",()=>{
+        counter.count++;
+        console.log(counter);
+        // value.innerText=counter.count;
+        // counter.callback();
+        renderDom();
+    })
+
+    const btn2=document.querySelector("#add-btn2")
+    btn2.addEventListener("click",()=>{
+        counter.count--;
+        console.log(counter);
+        // value.innerText=counter.count;
+        renderDom();
+    })
+})
+
+function renderDom(){
+    value.innerText=counter.count;
+}
+
+</script>

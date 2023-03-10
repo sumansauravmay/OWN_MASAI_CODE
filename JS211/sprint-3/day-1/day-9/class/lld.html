@@ -1,0 +1,212 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLD</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    //LLd=> low level designing
+//biscuit
+class Slot{
+      #slot;
+constructor(start,end){
+    this.#slot=[start,end];
+}
+get start(){
+    return this.#slot[0];
+}
+get end(){
+    return this.#slot[1];
+}
+}
+
+//Packet
+
+class Slots{
+    #slots;
+    constructor(){
+        this.#slots=[];
+    }
+    get slots(){
+        return this.#slots;
+    }
+    add(slot)
+    {
+      if(this.isAvailable(slot.start,slot.end))
+      {
+        this.#slots.push(slot);
+      }
+    }
+    isAvailable(start,end)
+    {
+for(let slot of this.#slots)
+{
+    if(start<slot.end && end>slot.start)
+    {
+return false;
+    }
+}
+return true;
+    }
+
+    get size(){
+        return this.#slots.length;
+    }
+
+    ListSlots(){
+        for(let s of this.#slots)
+        {
+            console.log(`Start: ${s.start},End: ${s.end}`)
+        }
+    }
+
+    deleteslot(slot){
+        for(let i=0;i<this.#slots.length;i++)
+        {
+            if(slot.start===this.#slots[i].start && slot.end===this.#slots[i].end)
+       {
+        this.#slots.splice(i,1);
+        return true;
+       }
+        }
+        return false;
+    }
+
+}
+
+
+// let s1=new Slot(1,2);
+// let s2=new Slot(3,4);
+// let s3=new Slot(3,5);
+// let s4=new Slot(6,7);
+
+// let slots=new Slots()
+// slots.add(s1);
+// slots.add(s2)
+// slots.add(s3);
+// slots.add(s4);
+
+// slots.ListSlots();
+
+// slots.deleteslot(s2)
+// console.log(slots.slots)
+
+
+
+class MeetingRoom{
+    #name;
+    #capacity;
+    #slots;
+    #availableslots;
+    constructor(name,capacity){
+        this.#name=name;
+        this.#capacity=capacity;
+        this.#slots=new Slots();
+    }
+    get name(){
+        return this.#name;
+    }
+    get capacity(){
+        return this.#capacity;
+    }
+    get slots(){
+        return this.#slots;
+    }
+get availableslots(){
+    return this.#availableslots;
+}
+
+// set availableslots(slots){
+// this.#availableslots=[];
+// if(this.#slots.size===0)
+// {
+//     this.#availableslots.push(1,8);
+//     return;
+// }
+// }
+
+}
+
+// class Floor {
+//   #name;
+//   #meetingRooms;
+
+//   constructor(name) {
+//     this.#name = name;
+//     this.#meetingRooms = [];
+//   }
+
+//   get name() {
+//     return this.#name;
+//   }
+
+//   get meetingRooms() {
+//     return this.#meetingRooms;
+//   }
+
+//   addMeetingRoom(newRoom) {
+//     this.#meetingRooms.push(newRoom);
+//   }
+
+//   deleteMeetingRoom(name) {
+//     for (let i = 0; i < this.#meetingRooms.length; i++) {
+//       if (this.#meetingRooms[i].name === name) {
+//         this.#meetingRooms.splice(i, 1);
+//         return true;
+//       }
+//     }
+//     return false;
+//   }
+// }
+
+// class Building {
+//   #name;
+//   #floors;
+
+//   constructor(name) {
+//     this.#name = name;
+//     this.#floors = [];
+//   }
+
+//   get name() {
+//     return this.#name;
+//   }
+
+//   get floor() {
+//     return this.#floors;
+//   }
+
+//   addFloor(newFloor) {
+//     this.#floors.push(newFloor);
+//   }
+// //deletefloor(name)
+
+// getFloorByName(name) {
+//     return this.#floors.find((el) => el.name === name);
+//   }
+// }
+let n1=new MeetingRoom("Room-1",30);
+
+let s1=new Slot(1,2);
+let s2=new Slot(3,4);
+let s3=new Slot(3,5);
+let s4=new Slot(6,7);
+
+n1.slots.add(s1);
+n1.slots.add(s2);
+n1.slots.add(s3);
+n1.slots.add(s4);
+
+n1.slots.ListSlots()
+console.log(n1)
+
+
+
+
+</script>

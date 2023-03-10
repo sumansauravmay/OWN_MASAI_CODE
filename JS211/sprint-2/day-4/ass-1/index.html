@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+</head>
+<body>
+    <input type="text" id="input" placeholder="Put your task here"/>
+    <button id="add-btn">Add</button>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    class Todo{
+
+        #todos;
+        constructor(){
+            this.#todos=[];
+        };
+
+    set items(title){
+const newItem={
+id:Date.now(),
+title:title,
+status:false,
+};
+this.#todos=[...this.#todos,newItem];
+        };
+        
+        get items(){
+            return this.#todos;
+        }
+
+        toggleStatus(id){
+            this.#todos=this.#todos.map((el)=>
+el.id===id?{...el,status:!el.status}:el
+            );
+        }
+        deleteItem(id){
+            this.#todos=this.#todos.filter((el)=>
+            el,id!==id
+            )
+
+        }
+    }
+    const list=new Todo();
+    // console.log(list)
+    window.addEventListener("load",()=>{
+        let addBtn=document.querySelector("#add-btn")
+       addBtn.onclick=()=>{
+let text=document.querySelector("#input").value;
+list.items=text;
+renderDom();
+       };
+    });
+
+// todo structure
+    function TodoItem({id,title,status}){
+const div=document.createElement("div");
+const li=document.createElement("li");
+li.innerHTML=`${title} - ${status} - ${id}`;
+
+//toggle button
+const btn=document.createElement("button")
+btn.innerText="Toggle";
+btn.onclick=()=>{
+    list.innerText="Toggle";
+    btn.toggleStatus(id);
+    renderDom();
+};
+const del=document.createElement("button")
+del.innerText="Delete";
+del.onclick=()=>{
+    list.deleteItem(id);
+    renderDom();
+};
+
+div.append(li,btn,del);
+return div;
+    }
+    let renderDom=()=>{
+        let container=document.querySelector("#container");
+        container.innerHTML=null;
+
+        // multi Todos
+
+        list.items.forEach((el)=>{
+            let newItem=TodoItem(el);
+            container.append(newItem)
+        })
+    }
+</script>

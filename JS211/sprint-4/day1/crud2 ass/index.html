@@ -1,0 +1,206 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>userdetails</h1>
+    <form>
+        <input type="text" id="name" placeholder="Enter Name here"/>
+        <input type="text" id="batch" placeholder="Enter Batch here"/>
+        <input type="text" id="course" placeholder="Enter Course here"/>
+        <input type="text" id="age" placeholder="Enter age here"/>
+        <input type="text" id="mobile" placeholder="Enter mobile here"/>
+        <input type="text" id="score" placeholder="Enter score here"/>
+        <button id="submit">submit</button>
+    </form>
+    <button onclick="sort()">sort Low to High</button>
+    <button onclick="sort2()">Sort High to Low</button>
+    <select name="" id="filter" onchange="filter()">
+        <option value="all">All</option>
+        <option value="web18">Web-18</option>
+        <option value="web19">Web-19</option>
+        <option value="web20">Web-20</option>
+    </select>
+
+    <div id="container"></div>
+    <div id="pagen"></div>
+</body>
+</html>
+<script>
+    window.addEventListener("load",()=>{
+        getData()
+    })
+    let getData=async()=>{
+        let res=await fetch("https://whispering-bayou-78115.herokuapp.com/api/details");
+        let data=await res.json();
+        console.log(data)
+        renderDom(data)
+    }
+    let renderDom=(data)=>{
+        let container=document.querySelector("#container");
+        container.innerHTML=null;
+        data.forEach(({name,batch,course,age,mobile,score,id})=>{
+
+            let name2=document.createElement("h2")
+            name2.innerText=`Name: ${name}`;
+
+            let course2=document.createElement("p")
+            course2.innerText=`Course: ${course}`;
+
+            let batch2=document.createElement("p")
+            batch2.innerText=`Batch: ${batch}`;
+
+            let age2=document.createElement("p")
+            age2.innerText=`Age: ${age}`;
+
+            let mobile2=document.createElement("p")
+            mobile2.innerText=`Mobile: ${mobile}`;
+
+            let score2=document.createElement("p")
+            score2.innerText=`Score: ${score}`;
+
+            let remove=document.createElement("button")
+            remove.innerText="Remove"
+            remove.onclick=()=>{
+                remove_btn(id)
+            }
+
+            let edit=document.createElement("button")
+            edit.innerText="Edit"
+            edit.onclick=()=>{
+               editUserDetails(id)
+            }
+
+            let div=document.createElement("div")
+
+            div.append(name2,course2,batch2,age2,mobile2,score2,remove,edit)
+
+            container.append(div)
+        })
+        
+    }
+
+
+    let submit_btn=document.querySelector("#submit")
+    submit.onclick=()=>{
+        adduserDetails(event)
+    }
+    let adduserDetails=async(e)=>{
+        e.preventDefault();
+        let data={
+            id:Date.now(),
+            name:document.querySelector("#name").value,
+            course:document.querySelector("#course").value,
+            batch:document.querySelector("#batch").value,
+            age:document.querySelector("#age").value,
+            mobile:document.querySelector("#mobile").value,
+            score:document.querySelector("#score").value,
+        }
+        // console.log(data)
+       
+        let res=await fetch("https://whispering-bayou-78115.herokuapp.com/api/details",{
+            method:"POST",
+            body:JSON.stringify(data),
+            headers:{
+                  "Content-Type":"application/json",
+            }
+        })
+        getData();
+        let userData=await res.json();
+        console.log(userData)
+    }
+
+
+let remove_btn=async(id)=>{
+let res=await fetch(`https://whispering-bayou-78115.herokuapp.com/api/details/${id}`,{
+    method:"DELETE",
+    headers:{
+        "Content-Type":"application/json",
+    }
+})
+getData();
+}
+
+let sort=async()=>{
+    let res=await fetch(`https://whispering-bayou-78115.herokuapp.com/api/details/?_sort=age&_order=asc`)
+    res=await res.json()
+    renderDom(res);
+}
+
+
+let sort2=async()=>{
+    let res=await fetch(`https://whispering-bayou-78115.herokuapp.com/api/details/?_sort=age&_order=desc`)
+    res=await res.json()
+    renderDom(res);
+}
+
+
+let filter=async()=>{
+    let filterValue=document.querySelector("#filter").value;
+    if(filterValue=="all")
+    {
+        res=await fetch(`https://whispering-bayou-78115.herokuapp.com/api/details`)
+    res=await res.json();
+    // getData(res)
+  renderDom(res) 
+
+    }
+    else{
+        res=await fetch(`https://whispering-bayou-78115.herokuapp.com/api/details/?batch=${filterValue}`)
+    res=await res.json();
+    renderDom(res)
+    }
+    
+}
+
+//edit
+let editUserDetails=async(id)=>{
+
+let todo=await fetch(`https://whispering-bayou-78115.herokuapp.com/api/details/${id}`);
+
+let new_name=window.prompt("enter name here")
+
+let data={name:new_name || todo.name};
+
+let res=await fetch(`https://whispering-bayou-78115.herokuapp.com/api/details/${id}`,
+{
+method:"PATCH",
+body:JSON.stringify(data),
+headers:{
+    "Content-Type":"application/json",
+},
+});
+getData()
+}
+
+let pagenationfunc=()=>{
+    let pagenation=document.querySelector("#pagen");
+    pagenation.innerHTML=null;
+
+    for(let i=0;i<10;i++)
+    {
+        let page_btn=document.createElement("button")
+        page_btn.innerText=`${i+1}`;
+        page_btn.setAttribute("id",`${i}`);
+       page_btn.onclick=()=>{
+        pageonclickfunc()
+       }
+    // pagenation.appendChild(page_btn);
+    pagenation.append(page_btn);
+    }
+        
+}
+
+let  pageonclickfunc=async(i)=>{
+
+    let res=await fetch(`https://whispering-bayou-78115.herokuapp.com/api/details/?_page=${i+1}&_limit=5`);
+    res=await res.json();
+    renderDom(res);
+
+}
+
+pagenationfunc()
+</script>

@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            font-size:20px;
+           margin:auto;
+        }
+        h1{
+            text-align: center;
+        }
+        button{
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1><a href="list.html">Task List</a></h1>
+    <input type="text" id="list" placeholder="enter task" />
+    <input type="date" id="deadline"/>
+    
+    <button id="enter" onclick="getData()">Add</button>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+ function details(l,d)
+ {
+        this.list=l
+        this.deadline=d
+}
+
+let getData=()=>{
+    let list=document.querySelector("#list").value;
+    let deadline=document.querySelector("#deadline").value;
+    let s1=new details(list,deadline);
+    
+    console.log(s1)
+let data=[];
+data.push(s1);
+ localStorage.setItem("taskbar",JSON.stringify(data));
+
+}
+
+</script>

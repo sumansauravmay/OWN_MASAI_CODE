@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        *{
+            background-color: rgb(58, 53, 53);
+        }
+        #navbar{
+            display:flex;
+            justify-content: space-between;
+        }
+        #written{
+            display:flex;
+            gap:10px;
+           margin-left:20px;
+           color:white;
+        }
+        img{
+            height:70px;
+            width:100px;
+          
+        }
+        input{
+            font-size: 15px;
+            border:1px solid white;
+            background-color: black;
+            height:30px;
+            width:250px;
+            border-radius: 10px;
+            color:white;
+        }
+        .absolute{
+            position:relative;
+            display:flex;
+            gap:5px;
+            align-items: center;
+            margin-left:400px;
+            color:white;
+           padding:5px;
+           background-color: transparent;
+           /* margin-top:-400px; */
+        }
+        .divblock{
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+           margin-top:20px;
+        }
+        #image{
+            width:90%;
+            height:700px;
+            
+        }
+        #container{
+            margin-left:50px;
+            text-align: center;
+            margin-top:50px;
+        }
+    </style>
+</head>
+<body>
+<div id="navbar">
+    <div id="written">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlGhFSmlT6HL628jrBs-avmGmzIMyBJGDkM-ZwJznnnw&s" alt="" />
+        <p>Home</p>
+        <p>Store</p>
+        <p>Channel</p>
+        <p>Categories</p>
+        <p>My Stuf</p>
+    </div>
+    <div>
+        <input type="text" id="query" oninput="debaunce(1000,getData())" placeholder="Enter Movie Name"/>
+    </div>
+</div>
+
+   <h1><a href="movie.html">moviePage</a></h1>
+   <div id="container"></div>
+</body>
+</html>
+<script>
+    // let main=()=>{
+    //     let movie=document.querySelector("#query").value;
+    //     getData(movie)
+    // }
+
+let getData=async()=>{
+    let movie=document.querySelector("#query").value;
+    let url=`https://www.omdbapi.com/?apikey=93992e1b&s=${movie}`;
+    let res=await fetch(url);
+    var data=await res.json();
+    console.log(data.Search)
+    append(data.Search)
+    // localStorage.setItem("movie",JSON.stringify(data.Search))
+}
+let id;
+let debaunce=(delay,func)=>{
+    if(id)
+    {
+        clearTimeout
+    }
+    id=setTimeout(()=>{
+        func()
+    },delay)
+}
+let append=(data)=>{
+    let container=document.querySelector("#container");
+    container.innerHTML=null;
+   data.forEach((elem)=>{
+
+    let img=document.createElement("img")
+    img.src=elem.Poster;
+    img.setAttribute("id","image")
+
+    let name=document.createElement("h1")
+    name.innerText=`Movie : ${elem.Title}`;
+    name.setAttribute("class","absolute")
+
+    let type=document.createElement("p")
+    type.innerText=`type : ${elem.Type}`;
+    type.setAttribute("class","absolute")
+
+    let year=document.createElement("p")
+       year.innerText=`Year : ${elem.Year}`;
+       year.setAttribute("class","absolute")
+
+       let imbd=document.createElement("p")
+       imbd.innerText=`imbd : ${elem.imdbID}`;
+       imbd.setAttribute("class","absolute")
+
+       let div=document.createElement("div")
+       div.setAttribute("class","divblock")
+
+       div.append(img,name,type,year,imbd)
+
+       container.append(div)
+})
+
+}
+
+
+
+// Poster: "https://m.media-amazon.com/images/M/MV5BOGE4NzU1YTAtNzA3Mi00ZTA2LTg2YmYtMDJmMThiMjlkYjg2XkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_SX300.jpg"
+// Title: "Thor"
+// Type: "movie"
+// Year: "2011"
+// imdbID: "tt0800369"
+
+</script>

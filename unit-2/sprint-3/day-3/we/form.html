@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input id="name" type="text" placeholder="Enter Name Here"/>
+        <input id="age" type="number" placeholder="Enter Age Here"/>
+    <select id="gender">
+        <option value="">None</option>
+        <option value="">Male</option>
+        <option value="">Female</option>
+        <option value="">Transgender</option>
+        <input id="email" type="text" placeholder="Enter email Here"/>
+    <input id="mobile" type="number" placeholder="Enter mobile Here"/>
+    <input type="submit"/>
+    </select>
+    </form>
+
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit",myFunction)
+    function myFunction(){
+        // event.preventDefault()
+
+var username=document.querySelector("#name").value;
+var userage=document.querySelector("#age").value;
+var usergender=document.querySelector("#gender").value;
+var useremail=document.querySelector("#email").value;
+var usernumber=document.querySelector("#mobile").value;
+
+console.log(username,userage,usergender,useremail,usernumber)
+    }
+</script>

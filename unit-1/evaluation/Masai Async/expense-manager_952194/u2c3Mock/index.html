@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>U2C3 Mock</title>
+    <style>
+      #report{
+        display: grid;
+        /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+        width:25%;
+        gap:10px;
+      }
+      #report>div{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      h3{
+        color:green;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <select id="month">
+        <option value="January">JANUARY</option>
+        <option value="February">FEB</option>
+        <option value="MARCH">MARCH</option>
+        <option value="APRIL">APRIL</option>
+        <option value="MAY">MAY</option>
+        <option value="JUNE">JUNE</option>
+        <option value="JULY">JULY</option>
+        <option value="AUGUST">AUGUST</option>
+        <option value="SEPETEMBER">SEPETEMBER</option>
+        <option value="OCTOBER">OCTOBER</option>
+        <option value="NOVEMBER">NOVEMBER</option>
+        <option value="DECEMBER">DECEMBER</option>
+      </select>
+
+      <input id="income" type="number" placeholder="Enter Income" />
+
+      <input id="expense" type="number" placeholder="Enter expense" />
+
+      <input type="submit" />
+    </form>
+
+    <div id="report">
+      <div>
+        <h1></h1>
+        <p></p>
+        <p></p>
+        <h3></h3>
+        <button></button>
+      </div>
+          <!-- Append your cards here -->
+    </div>
+  </body>
+</html>
+
+<script>
+  document.querySelector("form").addEventListener("submit",myFun)
+  function myFun(){
+    event.preventDefault();
+   let month= document.querySelector("#month").value;
+  let income=document.querySelector("#income").value;
+  let expense=document.querySelector("#expense").value;
+  document.querySelector("h1").innerText=month;
+  document.querySelector("h1+p").innerText=income;
+  document.querySelector("p+p").innerText=expense;
+
+  if(income>expense)
+  {
+    document.querySelector("h3").innerText="SAVE";
+    
+  }
+  else if(income<expense)
+  {
+    document.querySelector("h3").innerText="DEBT";
+    
+  }
+  else
+  {
+    document.querySelector("h3").innerText="BREAKEVEN";
+    
+  }
+ 
+  document.querySelector("button").innerText="Delete";
+  }
+  
+  
+</script>

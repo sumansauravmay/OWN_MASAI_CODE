@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <style>
+        h3{
+            text-align: center;
+            font-size:30px;
+        }
+        h5{
+            font-size:30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="product">
+        <h3><a href="login.html">Login</a></h3>
+    </div>
+    <h5 id="prod">Products</h5>
+</body>
+</html>
+<script>
+    document.querySelector("#prod").addEventListener("click",function(){
+        functlog()
+    })
+    let functlog=()=>{
+        alert("Please Login first to continue!!")
+        window.location.href="login.html";
+    }
+</script>

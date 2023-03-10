@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            color:teal;
+            text-align: center;
+            font-size:35px;
+        }
+        #blank{
+            width:35%;
+            height:400px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            margin:auto;
+        }
+       #none {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            width:80%;
+            height:50px;
+            margin:auto;
+            margin-top: 10px;
+            display:grid;
+            text-align: center;
+            align-items:center;
+            font-size:30px;
+        }
+        .cal{
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            width:80%;
+            height:60px;
+            
+            margin-top:10px;
+            margin-left:40px;
+            display:flex
+        }
+        .num{
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            width:20%;
+            height:100%;
+            margin:auto;
+            text-align:center;
+            cursor:pointer;
+          
+           font-size: 40px;
+        }
+        .hover{
+            background-color: black;
+            color:white;
+        }
+        .how{
+            background-color: red;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Masai Calculator</h1>
+    <div  id="blank">
+<div id="none">
+    <!-- display here -->
+</div>
+<div class="cal">
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num hover">+</div>
+</div>
+<div class="cal"> 
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num hover">-</div>
+</div>
+<div  class="cal">
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+    <div class="num hover">*</div>
+</div>
+<div  class="cal">
+    <div class="num how">c</div>
+    <div class="num hover">0</div>
+    <div class="num">=</div>
+    <div class="num hover">/</div>
+</div>
+    </div>
+</body>
+</html>
+<script>
+    var x=document.querySelectorAll(".cal")
+var bag="";
+
+    for(var i=0;i<x.length;i++)
+    {
+        x[i].addEventListener("click",mycalculator)
+    }
+    function mycalculator(event){
+        var laddu=event.target.innerText;
+        if(laddu=="c")
+        {
+            bag="";
+            document.querySelector("#none").innerText="";
+        }
+        // else if(x[0]==laddu && laddu=="=")
+        // {
+        //     bag="";
+        //     document.querySelector("#none").innerText="";
+        // }
+        else if(laddu=="=")
+        {
+            var output=eval(bag)
+            document.querySelector("#none").innerText=output;
+        }
+        else
+        {
+            bag=bag+laddu;
+       document.querySelector("#none").innerText=bag;
+        }
+        
+    }
+</script>

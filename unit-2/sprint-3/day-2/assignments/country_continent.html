@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <select id="display">
+        <option value="None">None</option>
+        <option value="India">India</option>
+        <option value="United States of America">United States of America</option>
+        <option value="China">China</option>
+        <option value="Nepal">Nepal</option>
+        <option value="Australia">Australia</option>
+        <option value="France">France</option>
+        <option value="Germany">Germany</option>
+        <option value="South Africa">South Africa</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Maxico">Maxico</option>
+        <option value="Argentina">Argentina</option>
+    
+        <option value="Brazil">Brazil</option>
+        <option value="Canada">Canada</option>
+        <option value="Singhapour">Singhapour</option>
+        <option value="Sweden">Sweden</option>
+    </select>
+    <button id="sub">Submit</button>
+    <h1 id="country"></h1>
+</body>
+</html>
+<script>
+    document.querySelector("#sub").addEventListener("click",myFunction)
+function myFunction()
+{
+    var dis=document.querySelector("#display").value;
+    if(dis=="India"||dis=="China"||dis=="Nepal"||dis=="Singhapour"||dis=="Australia")
+    {
+       alert("The continent is Asia!")
+    }
+    else if(dis=="United States of America"||dis=="Maxico"||dis=="Canada")
+    {
+        alert("The continent is North America!")
+    }
+    else if(dis=="France"||dis=="Sweden"||dis=="Germany")
+    {
+        alert("The continent is Europian Union!")
+    }
+    else if(dis=="Brazil"||dis=="Argentina!")
+    {
+        alert("The continent is South America!")
+    }
+    else{
+        alert("The continent is Africa!")
+    }
+}
+</script>

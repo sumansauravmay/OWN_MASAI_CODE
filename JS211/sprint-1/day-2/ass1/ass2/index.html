@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="current_time">Choose Time</h1>
+    <input id="time" type="time"/>
+    <button onclick="submit()">Submit</button>
+</body>
+</html>
+<script>
+    
+    let submit=()=>{
+        let time=document.querySelector("#time").value;
+        console.log(time)
+      let [h,m]=time.split(":");
+        console.log(`${h} & ${m}`)
+
+        let id=setInterval(() => {
+        let current=new Date();
+        let hours=current.getHours();
+        let mins=current.getMinutes();
+        let sec=current.getSeconds();
+
+        let time=document.querySelector("#current_time")
+        time.innerText=`${hours}:${mins}:${sec}`;
+        if(h==hours && m==mins)
+        {
+            alert("Time to do Assignment")
+            let mp3="https://www.youtube.com/watch?v=cldxcNjMKls"
+            new Audio(mp3).play();
+            clearInterval(id);
+        }
+        
+    },1000);
+    }
+    
+</script>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="common.css"/>
+ <style>
+    h1{
+        text-align: center;
+        color:teal;
+    }
+    form{
+            width:50%;
+            margin:auto;
+           
+        }
+        input{
+            font-size:20px;
+            display:block;
+            /* margin:auto; */
+            margin-top: 20px;
+            margin-left: 200px;
+           
+            
+        }
+       
+        #submit{
+            margin-left:280px
+        }
+ </style>
+</head>
+<body>
+   
+    <div id="home">
+     
+        <div id="first">        
+            <h1>NORDSTROM</h1>
+        </div>
+
+        <div id="second">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQecw_zqoXRbHUtBScAOKFvE25KoAJzw-LbBgZ9Qplj8nP7eKf9NZPT31ZWpvDW6ak6V7k&usqp=CAU" alt=""/>
+            <h4>Search for products and Brands</h4>
+        </div>
+        <div class="sign third">
+            <h3><a href="C:\Users\MODI\Desktop\indivisualProject\nordstrom\signup.html">Sign up</a></h3>
+            <h3><a href="C:\Users\MODI\Desktop\indivisualProject\nordstrom\signin.html">Sign in</a></h3>
+            <img style="height:30%;width:10%;margin-left:30px;margin-top:20px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUFvtWN2T53xmppRsKIQKoAo28dKs_9GAJyw&usqp=CAU" alt=""/>
+        </div>
+    </div>
+    <br>
+    <div id="line"></div>
+    <br>
+    <div id="category">
+        <div>
+            <p>Sale</p>
+        </div>
+        <div>
+            <p>Men</p>
+        </div>
+        <div>
+            <p>Women</p>
+        </div>
+        <div>
+            <p>Kids</p>
+        </div>
+        <div>
+            <p>Young Adult</p>
+        </div>
+        <div>
+            <p>Activewear</p>
+        </div>
+        <div>
+            <p>Home</p>
+        </div>
+        <div>
+            <p>Beauty</p>
+        </div>
+        <div>
+            <p>Designer</p>
+        </div>
+        <div>
+            <p>Gifts</p>
+        </div>
+        <div>
+            <p>Brands</p>
+        </div>
+    </div>
+    <br>
+    <h1>Sign In</h1>
+        <form>
+            
+            <input type="text" id="email" placeholder="Enter your email here">
+            <input type="text" id="password" placeholder="set password here">
+            <input id="submit" type="submit">
+        </form>
+</body>
+</html>
+
+<script>
+
+let arr=JSON.parse(localStorage.getItem("userData"))|| [];
+    document.querySelector("form").addEventListener("submit",function(event){
+        event.preventDefault();
+        let obj={
+            customerEmail:document.querySelector("#email").value,
+            customerPassword:document.querySelector("#password").value
+        };
+if(checkSignin(obj.customerEmail,obj.customerPassword)==false)
+{
+    alert("Wrong email or password")
+    // localStorage.setItem("signin",JSON.stringify(arr));
+    // alert("Sign in successfully")
+    // window.location.href="product.html";
+}
+else
+{
+    // alert("Wrong email or password")
+    localStorage.setItem("signin",JSON.stringify(arr));
+    alert("Sign in successfully")
+    window.location.href="product.html";
+}
+     document.querySelector("form").reset();
+    })
+    function checkSignin( customerEmail,customerPassword){
+            let filter=arr.filter(function(elem){
+                return elem.customerEmail==customerEmail && elem.customerPassword==customerPassword
+            });
+            if(filter.length>0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+</script>

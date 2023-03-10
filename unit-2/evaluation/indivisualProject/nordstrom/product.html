@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="common.css"/>
+    <style>
+#filter{
+    width:10%;
+    color:black;
+    font-size:30px;
+}
+#products{
+    display:grid;
+    grid-template-columns: repeat(3,1fr);
+    width:98%;
+    /* height:1000px; */
+    margin:auto;
+    gap:15px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+#products>div{
+    width:100%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+#products img{
+    width:200px;
+    margin-left:100px;
+    height:400px;
+}
+p:nth-child(2){
+    text-align: center;
+    width:100%;
+    color:red;
+    /* margin:auto; */
+}
+p:nth-child(5){
+    margin-left:180px;
+    width:100%;
+    color:blue;
+    font-size:20px;
+}
+h3{
+    text-align: center;
+    color:green;
+}
+button{
+    margin-left:130px;
+    width:40%;
+    margin-bottom:20px;
+    font-size:20px;
+}
+h4{
+    text-align: center;
+    color:grey;
+    margin-right: 100px;;
+}
+#second>img{
+    margin-left:-80px;
+}
+    </style>    
+</head>
+<body>
+   
+    <div id="home">
+     
+        <div id="first">        
+            <h1>NORDSTROM</h1>
+        </div>
+
+        <div id="second">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQecw_zqoXRbHUtBScAOKFvE25KoAJzw-LbBgZ9Qplj8nP7eKf9NZPT31ZWpvDW6ak6V7k&usqp=CAU" alt=""/>
+            <h4>Search for products and Brands</h4>
+        </div>
+        <div class="sign third">
+            <h3><a href="C:\Users\MODI\Desktop\indivisualProject\nordstrom\signup.html">Sign up</a></h3>
+            <h3><a href="C:\Users\MODI\Desktop\indivisualProject\nordstrom\signin.html">Sign in</a></h3>
+            <img style="height:30%;width:10%;margin-left:30px;margin-top:20px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUFvtWN2T53xmppRsKIQKoAo28dKs_9GAJyw&usqp=CAU" alt=""/>
+        </div>
+    </div>
+    <br>
+    <div id="line"></div>
+    <br>
+    <div id="category">
+        <div>
+            <p>Sale</p>
+        </div>
+        <div>
+            <p>Men</p>
+        </div>
+        <div>
+            <p>Women</p>
+        </div>
+        <div>
+            <p>Kids</p>
+        </div>
+        <div>
+            <p>Young Adult</p>
+        </div>
+        <div>
+            <p>Activewear</p>
+        </div>
+        <div>
+            <p>Home</p>
+        </div>
+        <div>
+            <p>Beauty</p>
+        </div>
+        <div>
+            <p>Designer</p>
+        </div>
+        <div>
+            <p>Gifts</p>
+        </div>
+        <div>
+            <p>Brands</p>
+        </div>
+    </div>
+    <br>
+    <select id="filter">
+        <option value="All">All</option>
+        <option value="Women">Women</option>
+        <option value="Men">Men</option>
+        <option value="Kid">Kid</option>
+        <!-- <option>Fashion</option> -->
+        <!-- <option>Brand</option> -->
+        <option value="Gifts">Gifts</option>
+        <!-- <option>Beauty</option> -->
+    </select>
+    <div id="products"></div>
+</body>
+</html>
+<script>
+    let allproduct=[
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/3cd19957-fa46-4b17-bdf5-babaf8051c7c.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Skinny Stretch Jeans",
+            brand:"TOPMAN",
+            // color:"black",
+            price:"INR 4,667",
+            catagory:"Men"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/6c0c56f4-066b-4fda-89d2-d776e10297c5.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Iggy Tapered Leg Skinny Jeans",
+            brand:"NEUW DENIM",
+            // color:"Blue",
+            price:"INR 7,460",
+            catagory:"Men"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/29b2b323-afc6-43a2-b52d-39af57f52335.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Linen Blend Blazer",
+            brand:"VICI COLLECTION",
+            // color:"black",
+            price:"INR 8,252",
+            catagory:"Women"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/e43ae357-b968-4673-8850-aa0eabeed017.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Kelson Linen Blend Dickey Jacket",
+            brand:"VERONICA BEARD",
+            // color:"Blue",
+            price:"INR 49,847.01",
+            catagory:"Women"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/762f7eb7-1cc6-40dc-9c19-41cda52d61cd.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"High Pile Fleece Hooded Jacket",
+            brand:"L.L.BEAN",
+            // color:"black",
+            price:"INR 4,918.02",
+            catagory:"Kid"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/21c32462-ad63-47b9-9e81-8eb7148bd052.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Sportswear Kids' Storm-FIT Windrunner Waterproof Hooded Jacket",
+            brand:"NIKE",
+            // color:"Black",
+            price:"INR 7,502.06",
+            catagory:"Kid"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/eab36d92-eeac-45ba-8439-feb0b0f59dba.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Cotton Denim Shacket",
+            brand:"TOPSHOP",
+            // color:"black",
+            price:"INR 5,418.15",
+            catagory:"Women"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/945b471b-6512-46bf-a863-645e75cf2262.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Le Cagole Mini Leather Crossbody",
+            brand:"BALENCIAGA",
+            // color:"Blue",
+            price:"INR 129,202.11",
+            catagory:"Gifts"
+        },
+
+
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/68f62117-fff3-4d2a-b0bd-f851fde947df.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Torrey Performance Shorts",
+            brand:"ZELLA",
+            // color:"black",
+            price:"INR 3,748.53",
+            catagory:"Gifts"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/e3ca7d8c-e02c-47c2-87c5-d60f58d088db.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Popover Cocktail Dress",
+            brand:"VINCE CAMUTO",
+            // color:"Blue",
+            price:"INR 12,336.72",
+            catagory:"Women"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/77818fd5-9486-42b4-9519-535669a4d7e3.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Lace & Satin Chemise",
+            brand:"IN BLOOM BY JONQUIL",
+            // color:"black",
+            price:"INR 3,500.96",
+            catagory:"Women"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/625c8d23-4028-4c50-98db-91cd6a92bec4.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838",
+            productName:"Aldridge Cage Sandal",
+            brand:"VERONICA BEARD",
+            // color:"Blue",
+            price:"INR 31,258.58",
+            catagory:"Women"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/4ce25787-7df3-4ae5-9e6f-36467abb7939.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838",
+            productName:"Swift Run Sneaker",
+            brand:"ADIDAS",
+            // color:"black",
+            price:"INR 7,502.06",
+            catagory:"Men"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/e99f300f-2f30-48d9-a857-80bee6b4d525.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838",
+            productName:"Jungle Satin Slippers",
+            brand:"VERSACE",
+            // color:"Black",
+            price:"INR 12,503.43",
+            catagory:"Men"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/50ebd3ce-6d6a-4d97-863f-4ca0e888553f.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838",
+            productName:"Chuck Taylor® All Star® Easy-On Pirate Print Sneaker",
+            brand:"CONVERSE",
+            // color:"black",
+            price:"INR 2,042.23",
+            catagory:"Kid"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/4b085859-44db-4ed3-bbc2-6a403573099a.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838",
+            productName:"Kids' Kawa Sport Slide",
+            brand:"NIKE",
+            // color:"Blue",
+            price:"INR 1,625.45",
+            catagory:"Kid"
+        },
+
+
+
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/5fce4f3a-100f-4c3d-8505-0d2da03c2382.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838",
+            productName:"Mini Kånken Water Resistant Backpack",
+            brand:"FJÄLLRÄVEN",
+            // color:"black",
+            price:"INR 5,834.93",
+            catagory:"Gifts"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/780034a6-e6ed-43c8-a67f-3fa2533d9981.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Rejuvenating Travel Size Hand Sanitizer",
+            brand:"NOSHINKU",
+            // color:"Blue",
+            price:"INR 583.49",
+            catagory:"Gifts"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/29b2b323-afc6-43a2-b52d-39af57f52335.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Linen Blend Blazer",
+            brand:"VICI COLLECTION",
+            // color:"black",
+            price:"INR 8,252",
+            catagory:"Gifts"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/9f178af8-d91f-43e3-a007-d5367d1178a5.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Highstreet 60mm Polarized Flat Top Sunglasses",
+            brand:"RAY-BAN",
+            // color:"Blue",
+            price:"INR 13,837.13",
+            catagory:"Gifts"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/daf15efe-ad61-468f-b785-8b400d3e993e.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"4ct tw Cubic Zirconia Earrings",
+            brand:"NORDSTROM",
+            // color:"black",
+            price:"INR 4,167.81",
+            catagory:"Women"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/d299e634-75ac-448a-bf4a-5463edc878eb.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Siren Muse Large Hoop Earrings",
+            brand:"MONICA VINADER",
+            // color:"Black",
+            price:"INR 16,254.46",
+            catagory:"Women"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/81af7a86-fc42-4b0a-8c0d-838a71ba84f5.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838",
+            productName:"Bailee Flat",
+            brand:"ROCKPORT",
+            // color:"black",
+            price:"INR 9,169.18",
+            catagory:"Women"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/7b843707-65cf-466c-ad50-7f490c830d88.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Trefoil Crewneck Sweatshirt",
+            brand:"ADIDAS ORIGINALS",
+            // color:"Blue",
+            price:"INR 4,167.81",
+            catagory:"Women"
+        },
+
+
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/e69f4f6b-d8f4-445d-9ff1-330b4a299271.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Sutterburn V-Neck Sweater",
+            brand:"ROBERT BARAKETT",
+            // color:"black",
+            price:"INR 4,167.81",
+            catagory:"Men"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/97171405-69d9-4997-95fa-c389e3fcdb2f.jpeg?crop=pad&pad_color=FFF&format=jpeg&trim=color&trimcolor=FFF&w=780&h=838",
+            productName:"Taylor Waterproof Wingtip Derby",
+            brand:"ROCKPORT",
+            // color:"Blue",
+            price:"INR 10,419.53",
+            catagory:"Men"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/8083578f-cb1f-47bf-81c0-e43990ed40ab.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Noise Canceling Bluetooth® Headphones",
+            brand:"MONTBLANC",
+            // color:"black",
+            price:"INR 53,347.97",
+            catagory:"Men"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/d0a8cf9f-455b-4185-a1f7-d2f537c61a31.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Nano Pods Wireless Earbuds",
+            brand:"ALTEC LANSING",
+            // color:"Blue",
+            price:"INR 2,499.85",
+            catagory:"Men"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/af9da5dc-690e-471f-b29a-06bd9e91bcbb.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Kids' Rainbow Stripe Joggers",
+            brand:"MINI BODEN",
+            // color:"black",
+            price:"INR 1,467.07",
+            catagory:"Kid"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/1fbb3f9a-d013-475c-8f26-84865ad22bbb.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"'Brady' Slim Fit Jeans",
+            brand:"DL1961",
+            // color:"Black",
+            price:"INR 4,084.45",
+            catagory:"Kid"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/86b36086-2b29-4f13-8cb6-3a2f3ab81c1b.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Kids' Knot It Tank",
+            brand:"ZELLA GIRL",
+            // color:"black",
+            price:"INR 2,417.33",
+            catagory:"Kid"
+        },
+        {
+            img:"https://n.nordstrommedia.com/id/sr3/dce90f1b-5487-4351-9dba-c5013f0593bd.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
+            productName:"Kids' Graphic Cotton Muscle Tee",
+            brand:"TREASURE & BOND",
+            // color:"Blue",
+            price:"INR 2,083.91",
+            catagory:"Kid"
+        }
+    ];
+
+
+ let ProductCount=document.querySelector("#products");
+ let arr=JSON.parse(localStorage.getItem("cart"))||[];
+
+ function displayProduct(data){
+    ProductCount.innerHTML=null;
+    data.forEach(function(elem){
+
+       
+
+        let product=document.createElement("div");
+
+        let img=document.createElement("img");
+        img.src=elem.img;
+
+        let name=document.createElement("p");
+        name.innerText=elem.productName;
+
+        let brand=document.createElement("h3");
+        brand.innerText=elem.brand;
+
+let price=document.createElement("h4");
+price.innerText=elem.price;
+
+let category=document.createElement("p");
+category.innerText=elem.catagory;
+
+let button=document.createElement("button");
+button.innerText="Add to cart";
+button.style.backgroundColor="black";
+button.style.color="white";
+button.addEventListener("click",function(){
+    addToCart(elem)
+})
+product.append(img,name,brand,price,category,button);
+ProductCount.append(product);
+    })
+ }
+
+ displayProduct(allproduct);
+
+ let filter=document.querySelector("#filter");
+ filter.addEventListener("change",function(){
+
+if(filter.value=="All")
+{
+//    console.log(allproduct)
+    displayProduct(allproduct);
+
+}
+else
+{
+    filtered=allproduct.filter(function(elem){
+        return elem.catagory==filter.value;
+    })
+    displayProduct(filtered);
+    // console.log(filtered);
+}
+ })
+function  addToCart(elem){
+    arr.push(elem);
+    localStorage.setItem("cart",JSON.stringify(arr))
+    alert("product added successfully");
+    window.location.href="cart.html";
+}
+</script>

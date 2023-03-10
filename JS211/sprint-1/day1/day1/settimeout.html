@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SetTimeOut</title>
+   
+</head>
+<body>
+    <h1>SlideShow</h1>
+    <div id="slide"></div>
+    <button onclick="stop()">Stop</button>
+    <button onclick="start()">Start</button>
+</body>
+</html>
+<script>
+    let image=[
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXrVk1yIJ8TU6UItadBmkL8uZqJHNnwxWgbg&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3199vZL04GyRWjXVaRbhdeoxPqiDlJfKGog&usqp=CAU",
+        "https://rukminim1.flixcart.com/image/416/416/k0flmkw0/painting/m/v/f/wfc-xs-175-pintura-original-imafk89vvr4zhdng.jpeg?q=70",
+        "https://cdn.shopify.com/s/files/1/0071/6826/2215/files/b_3.jpg?v=1642149177",
+        "https://thumbs.dreamstime.com/b/portrait-young-beautiful-girl-fashion-photo-29870052.jpg",
+    ];
+    let index=0;
+    let address;
+    let slideShow=()=>{
+        let container=document.querySelector("#slide");
+        // container.innerHTML="";
+      address=  setInterval(()=>{
+            container.innerHTML="";
+            if(index==image.length)
+            {
+                index=0;
+            }
+            
+            let img=document.createElement("img");
+            img.src=image[index];
+            container.append(img);
+            index++
+        },1000)
+    }
+let stop=()=>{
+    clearInterval(address);
+}
+let start=()=>{
+
+slideShow();
+
+}
+    slideShow()
+</script>

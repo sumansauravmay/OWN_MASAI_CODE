@@ -1,0 +1,16 @@
+/* Give styling here  */
+#container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    width:1000px;
+    gap:30px;
+    margin:auto;
+    height:500px;
+}
+h1{
+    color: teal;
+    
+}
+img{
+    width:150px;
+}

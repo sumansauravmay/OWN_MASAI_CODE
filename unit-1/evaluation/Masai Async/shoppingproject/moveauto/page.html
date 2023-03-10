@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            box-sizing:border-box;
+        }
+        .caruser{
+            width:100%;
+            position:relative; 
+             /* margin-top:500px; */
+        }
+        .caruser>img{
+            width:100%;
+        }
+        .caruser>button{
+            position:absolute;
+            top:40%;
+           background-color:rgb(77, 77, 77, 0.8);
+           font-size:50px;
+           border-radius: 100px;
+           width:50px;
+           height:50px;
+        }
+        .caruser>button:nth-child(2){
+            left:10px;
+        }
+        .caruser>button:nth-child(3){
+            right:10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="caruser">
+        <img src="https://raw.githubusercontent.com/Sourav12061999/react-3D-movie-app/main/public/slider1.png" alt=""/>
+        <button><</button>
+        <button>></button>
+    </div>
+</body>
+</html>
+<script>
+    var img=document.querySelector("img");
+    
+
+    let buttons=document.querySelectorAll("button");
+
+    let imgNum=0;
+
+    let imgArray=[
+        "https://raw.githubusercontent.com/Sourav12061999/react-3D-movie-app/main/public/slider1.png",
+        "https://raw.githubusercontent.com/Sourav12061999/react-3D-movie-app/main/public/slider2.png",
+        "https://raw.githubusercontent.com/Sourav12061999/react-3D-movie-app/main/public/slider3.png",
+    ];
+    buttons[0].addEventListener("click",function(){
+if(imgNum===0)
+{
+    imgNum=imgArray.length-1;
+}
+else
+{
+imgNum--;
+}
+img.src=imgArray[imgNum];
+    })
+
+    buttons[1].addEventListener("click",function(){
+if(imgNum===imgArray.length-1){
+    imgNum=0;
+}
+else
+{
+imgNum++;
+}
+img.src=imgArray[imgNum];
+    })
+
+</script>

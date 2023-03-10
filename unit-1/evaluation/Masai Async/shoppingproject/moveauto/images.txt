@@ -1,0 +1,9 @@
+
+
+slider1=https://raw.githubusercontent.com/Sourav12061999/react-3D-movie-app/main/public/slider1.png
+
+slider2 = https://raw.githubusercontent.com/Sourav12061999/react-3D-movie-app/main/public/slider2.png
+
+slider3 = https://raw.githubusercontent.com/Sourav12061999/react-3D-movie-app/main/public/slider3.png
+
+CSS=<link href="https://drive.google.com/uc?export=view&amp;id=1q-ZkceYWXABC5xAq2wgmNk7oHmLohNcN" rel="stylesheet">

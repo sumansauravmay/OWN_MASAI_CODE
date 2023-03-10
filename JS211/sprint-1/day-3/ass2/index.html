@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Booking</title>
+</head>
+<body>
+    <input type="text" id="name" placeholder="Enter your name here"/>
+    <input type="text" id="number" placeholder="Enter your phone number here"/>
+    <input type="text" id="age" placeholder="Enter your age here"/>
+    <input onclick="submit()" type="submit"/>
+</body>
+</html>
+<script>
+
+    let seats=100;
+let waiting=5;
+let w=waiting+1
+let avail=w+seats;
+
+setInterval(() => {
+    avail--;
+    console.log(avail)
+
+},3000);
+
+let submit=()=>{
+    let name=document.querySelector("#name").value;
+    let number=document.querySelector("#number").value;
+    let age=document.querySelector("#age").value;
+    
+    let p=new Promise((res,rej)=>{
+        setInterval(() => {
+            
+            if(avail<=100)
+        {
+            res("You got a confirmed ticket !!")
+        }
+        else{
+            rej("You ticket is Waiting !!")
+        }
+        }, 1000);
+    })
+    p.then((res)=>{
+        alert(`${name}, ${res}`)
+        
+    }).catch((rej)=>{
+alert(`${name}, ${rej}`)
+})
+}
+
+</script>

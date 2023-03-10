@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-1</title>
+</head>
+<body>
+    <h1><a href="inventary.html">Navbar</a></h1>
+    <h1>Add Data</h1>
+    <input type="text" placeholder="Name" id="name"/>
+    <input type="text" placeholder="Price" id="Price"/>
+    <input type="text" placeholder="Image URL" id="Image"/>
+    
+    <button id="submit" onclick="submit()" >Submit</button>
+    
+</body>
+</html>
+<script>
+let submit=()=>{
+    let name=document.querySelector("#name").value;
+    let price=document.querySelector("#price").value;
+    let image=document.querySelector("#image").value;
+    
+    // let obj={
+    //     name,price,image,
+    // };
+    // console.log(obj)
+
+    function details(n,p,i,c){
+        this.name=n;
+        this.price=p;
+        this.image=i;
+        
+    }
+    let s1=new details(name,price,image)
+    let data=JSON.parse(localStorage.getItem("data"))||[];
+    //null--false;
+    // if(data)
+    // {
+    //     data.push(s1)
+    // }
+    // else{
+    //     data=[];
+    //     data.push(s1)
+    // }
+    data.push(s1)
+   
+    localStorage.setItem("data",JSON.stringify(data));
+    console.log(data)
+}
+</script>

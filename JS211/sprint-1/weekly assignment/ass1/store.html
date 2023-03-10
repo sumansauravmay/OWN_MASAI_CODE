@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    let data=JSON.parse(localStorage.getItem("signup"));
+    let append=(data)=>{
+        let container=document.querySelector("#container");
+        container.innnerHTML=null;
+data.forEach((elem,index)=>{
+
+    let name=document.createElement("h1");
+    name.innerText=elem.name;
+
+    let email=document.createElement("p");
+    email.innerText=elem.email;
+
+    let password=document.createElement("p");
+    password.innerText=elem.password;
+
+    let type=document.createElement("p");
+    type.innerText=elem.selecter;
+
+let remove=document.createElement("button");
+remove.innerText="Delete"
+remove.onclick=()=>{
+    deletefunc(index)
+}
+
+    let div=document.createElement("div")
+
+    div.append(name,email,password,type,remove)
+
+    container.append(div)
+})
+    }
+    append(data)
+
+   let  deletefunc=(index)=>{
+    let data=JSON.parse(localStorage.getItem("signup"));
+    data.splice(index,1)
+    localStorage.setItem("signup",JSON.stringify(data))
+    append(data)
+   }
+</script>

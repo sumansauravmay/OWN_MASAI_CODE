@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>login page</h1>
+   
+        <input type="text" id="email" placeholder="Enter Email here"/>
+        <input type="number" id="password" placeholder="Enter Password here"/>
+        <select id="aduser">
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+        </select>
+        <input type="submit" onclick="submit()" id="submit"/>
+    
+    <p>don't have account?<a href="signup.html">signup</a></p>
+</body>
+</html>
+<script>
+    let arr=JSON.parse(localStorage.getItem("signup"))||[];
+
+    function constructor(e,p,s){
+        this.email=e;
+        this.password=p;
+        this.selecter=s;
+    }
+let submit=()=>{
+    let email=document.querySelector("#email").value;
+    let password=document.querySelector("#password").value;
+    let selecter=document.querySelector("#aduser").value;
+
+    let s1=new constructor(email,password,selecter);
+    console.log(s1)
+    if(checksignin(s1.email,s1.password)===false)
+    {
+        alert("Wrong email !!")
+    }
+    else
+    {
+        localStorage.setItem("login",JSON.stringify(arr))
+        alert("Sign in successfully")
+        if(selecter=="User")
+        {
+            window.location.href="productUser.html"; 
+        }
+       else{
+        window.location.href="productAdmin.html"; 
+       }
+    }
+}
+let checksignin=(email,password)=>{
+    let filter=arr.filter((elem)=>{
+        return elem.email==email && elem.password==password;
+    })
+    if(filter.length>0)
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+</script>

@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>List of task</h1>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+
+let data=JSON.parse(localStorage.getItem("taskbar"));
+   
+    let append=(data)=>{
+        let container=document.querySelector("#container")
+        container.innerHTML="";
+
+        data.forEach((elem,index)=>{
+            let task=document.createElement("h2")
+            task.innerText=elem.list;
+
+            let deadline=document.createElement("p")
+            deadline.innerText=elem.deadline;
+
+            let remove=document.createElement("button")
+            remove.innerText="Remove";
+
+            remove.onclick=()=>{
+               
+                deletefunc(index)
+            }
+
+            let mark=document.createElement("button")
+            mark.innerText="Mark as Complete";
+            mark.onclick=()=>{
+                mark.style.backgroundColor="green";
+                mark.innerText="Mark as pending"; 
+            }
+
+            let div=document.createElement("div")
+            div.append(task,deadline,remove,mark);
+
+            container.append(div)
+        })
+    }
+    append(data);
+
+    let deletefunc=(index)=>{
+        let data=JSON.parse(localStorage.getItem("taskbar"));
+        data.splice(index,1)
+        localStorage.setItem("taskbar",JSON.stringify(data));
+        append(data) 
+    }
+   
+</script>

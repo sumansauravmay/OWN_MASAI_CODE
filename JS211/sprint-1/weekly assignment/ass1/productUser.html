@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product for User</title>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    let data=JSON.parse(localStorage.getItem("product"));
+let append=(data)=>{
+let container=document.querySelector("#container");
+
+container.innerHTML=null;
+
+data.forEach((elem,index)=>{
+
+let image=document.createElement("img")
+image.src=elem.img;
+
+let name=document.createElement("h1")
+name.innerText=elem.name;
+
+let price=document.createElement("price")
+price.innerText=elem.price;
+
+let div=document.createElement("div")
+
+div.append(image,name,price);
+
+container.append(div);
+
+})
+}
+append(data)
+</script>

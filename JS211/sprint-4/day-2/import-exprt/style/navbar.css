@@ -1,0 +1,9 @@
+#navbar{
+    display:flex;
+    justify-content: space-evenly;
+    border:1px solid grey;
+    background-color: aquamarine;
+};
+h1{
+    color:royalblue;
+};

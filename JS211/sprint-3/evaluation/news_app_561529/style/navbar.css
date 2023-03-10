@@ -1,0 +1,11 @@
+#navbar{
+    display:flex;
+    justify-content: space-around;
+    border:1px solid black;
+    background-color: yellowgreen;
+    cursor: pointer;
+}
+#user_country
+{
+    margin-top:20px;
+}

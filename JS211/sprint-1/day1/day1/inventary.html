@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventary</title>
+</head>
+<body>
+  <h1>Inventary</h1>  
+  <div id="container"></div>
+</body>
+</html>
+<script>
+
+let main=()=>{
+    let data=JSON.parse(localStorage.getItem("data"));
+append(data)
+}
+
+let append=(data)=>{
+    let container=document.querySelector("#container");
+    container.innerHTML=""
+    data.forEach((elem,index)=>{
+
+        let image=document.createElement("img")
+        image.src=elem.image;
+
+        let name=document.createElement("p")
+        name.innerText=elem.name;
+
+        let price=document.createElement("p")
+        price.innerText=elem.price;
+
+        let del=document.createElement("button")
+        del.innerText="Delete";
+        del.onclick=()=>{
+            remove(index);
+        }
+    
+        let div=document.createElement("div")
+
+
+        div.append(image,name,price,del)
+        container.append(div)
+    })
+// console.log(data)
+}
+
+let remove=(index)=>{
+    let data=JSON.parse(localStorage.getItem("data"));
+    console.log(index)
+    data.splice(index,1);
+    localStorage.setItem("data",JSON.stringify(data));
+    
+}
+
+main();
+
+
+</script>

@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+</head>
+<body>
+    <h1>Counter</h1>
+    <h2 id="value"></h2>
+    <button id="add-btn">increment</button>
+    <button id="add-btn2">decrement</button>
+    <button id="inc">Start</button>
+    <button id="stop">Stop</button>
+</body>
+</html>
+<script>
+   class suman{
+    #value;
+    #update
+    constructor(init){
+this.#value=init;
+    }
+    set count(newValue){
+         this.#value=newValue;
+    }
+    get count(){
+       return this.#value;
+    }
+    set updatenum(cb)
+    {
+        this.#update;
+    }
+    get updatenum(){
+        return  this.#update;
+    }
+   }
+   let s1=new suman(0)
+  
+   window.addEventListener("load",()=>{
+   const container=document.querySelector("#value")
+    container.innerText=s1.count;
+
+
+    s1.updatenum=rentpay;
+
+    let btn1=document.querySelector("#add-btn")
+   btn1.addEventListener("click",()=>{
+    s1.count++;
+    // container.innerText=s1.count;
+    rentpay()
+})
+btn2=document.querySelector("#add-btn2")
+btn2.addEventListener("click",()=>{
+    s1.count--;
+    rentpay()
+})
+btn3=document.querySelector("#inc")
+btn3.addEventListener("click",()=>{
+    setInterval(() => {
+        s1.count++;
+        rentpay()
+    }, 1000);
+    
+})
+btn4=document.querySelector("#stop")
+btn4.addEventListener("click",()=>{  
+   clearInterval(container.innerText=s1.count);
+})
+
+   })
+
+   function rentpay(){
+     const container=document.querySelector("#value")
+    container.innerText=s1.count;
+   }
+
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suman Saurav</title>
+    <style>
+        button{
+            margin:10px;
+            font-size:30px;
+            border:0px;
+            border-radius:10px;
+        }
+       
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   var btn=[
+       {name:"primary",color:"white",bgColor:"blue"},
+
+       {name:"secondary",color:"white",bgColor:"grey"},
+
+       {name:"danger",color:"white",bgColor:"red"},
+
+       {name:"warning",color:"white",bgColor:"yellow"},
+
+       {name:"Info",color:"white",bgColor:"cyan"},
+
+       {name:"Light",color:"black",bgColor:"white"},
+
+       {name:"Success",color:"white",bgColor:"green"},
+
+       {name:"Dark",color:"white",bgColor:"black"},
+
+       {name:"Link",color:"blue",bgColor:"white"}
+   ];
+//    for(var i=0;i<btn.length;i++)
+//    {
+//     let btnarr=document.createElement("button");
+//        btnarr.innerText=btn[i].name;
+//        btnarr.style.backgroundColor=btn[i].bgColor;
+//        btnarr.style.color=btn[i].color;
+//        document.querySelector("body").append(btnarr)
+//    }
+btn.forEach(function(elem,index,arr)
+{
+    let btnarr=document.createElement("button");
+       btnarr.innerText=elem.name;
+       btnarr.style.backgroundColor=elem.bgColor;
+       btnarr.style.color=elem.color;
+       document.querySelector("body").append(btnarr)
+})
+      
+   
+</script>
