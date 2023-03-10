@@ -1,0 +1,19 @@
+[
+    {
+    "category": "A1",
+    "value": 100,
+    "foo": {
+      "bar": "Hello"
+    }
+  },
+   {
+    "category": "A2",
+    "value": 200,
+    "foo": {
+      "bar": "Hola"
+    }
+  }
+]
+
+
+

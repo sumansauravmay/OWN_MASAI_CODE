@@ -1,0 +1,57 @@
+# Masai Quiz
+
+## Instructions:
+
+- Use react-router for routing.
+- Use redux and thunk for dispatching asynchronous actions.
+- Keep the code clean, commented and documented. Maintain feature based coding. (separate action and reducers - feature wise folders ) example : all the action and reducer related to authentication in one folder etc.
+- You are free to use any css solutions as long as it looks good. Remember this also has score
+- You will have to also deploy both JSON server and app.
+
+## Problem Statement:
+
+- Build a Quiz app using react redux.
+- Refer to this documentation to retrieve trivia questions - [https://opentdb.com/api_config.php](https://opentdb.com/api_config.php)
+- In home page user can set up quiz with following information
+    - Name of the user
+    - Category (General Knowledge, Sports, Geography)
+    - Difficulty level
+    - Number of questions
+    
+    Refer to this image below
+    
+    ![Screenshot 2022-10-03 at 5.33.33 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fce4a424-b23d-4021-8355-b4f44025ff66/Screenshot_2022-10-03_at_5.33.33_PM.png)
+    
+- When clicking on start,  user should go to `/quiz` page where questions corresponding to selected category, difficulty level should appear
+- UI should look something like this for correct answer and wrong answer (just a reference, you can build your own UI)
+
+![Screenshot 2022-11-04 at 1.14.03 PM.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1caf271c-9c42-49f5-ab6e-9eb3fdab52df/Screenshot_2022-11-04_at_1.14.03_PM.png)
+
+- On clicking on any option, user should be able to see if his answer was correct or wrong (you can also use toaster or modal for this)
+- There should a Next button and Previous button as well, On clicking on `Next`, user should be moved to next question,  On clicking on `Previous`, user should be moved to previous question
+- When user reaches to last question, there should be submit button instead of next, when clicking on submit user should be moved to `/results` page.
+- Keep count of correct answers made by the user (you can store count in redux)
+- In `/results` page display result in form of tabular format, which should include
+    - Correct answers count
+    - Incorrect answers count
+    - Total score
+    - Percentage
+- You should have one more route for `/dashboard`.
+- In Dashboard page show results of all users who participated in quiz along with their scores.
+- User who scores highest marks should be at the top of list.
+
+### Submission
+
+- Please submit deployed link and Github link of code.
+- Please double check if deployed version works or not (run deployed version on your laptop and then submit it)
+- Any issues in deployed link, will be considered null and void.
+- Please verify your submissions are correct.
+- Make sure you follow all instructions carefully.
+- Submit before deadline.
+
+### Rubrics / Criteria to be judged upon
+
+- HTML, CSS, React, API calls will be tested.
+- Redux
+- React router
+- Code cleanliness

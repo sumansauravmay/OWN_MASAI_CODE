@@ -1,0 +1,369 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog page</title>
+    <style>
+        #navbar{
+        background-color: aqua;
+        text-align: center;
+
+        }
+        #btn{
+        margin-left: 600px;
+        font-size: 20px;
+        padding: 5px;
+       }
+       select,option,input{
+font-size: 20px;
+padding:6px;
+margin:5px;
+       }
+       #ascending,#descending,#search{
+        font-size: 20px;
+padding:6px;
+       }
+       .flexdata{
+        display: flex;
+       }
+       .editbtnstyle,.removebtnstyle{
+padding:6px;
+font-size: 20px;
+margin-left: 20px;
+width:80px;
+border-radius: 10px;
+color:white;
+border:0px;
+       }
+       .modal {
+        display: none;
+
+        position: fixed;
+
+        z-index: 1;
+
+        left: 0;
+        top: 0;
+        width: 100%;
+
+        height: 100%;
+
+        overflow: auto;
+
+        background-color: rgb(0, 0, 0);
+
+        background-color: rgba(0, 0, 0, 0.4);
+
+    }
+
+
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    #prev,#next,#page{
+        padding:10px;
+        font-size: 20px;
+    }
+    .pagination{
+        margin-left: 500px;
+    }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <h1>Blog Page</h1>
+    </div>
+    <div>
+        <button id="btn">
+            <a href="./addblog.html">Add New Blog</a>
+        </button>
+    </div>
+
+    <div>
+        <input id="inputsearch" type="text" placeholder="Seach blog"/>
+        <button id="search">Search</button>
+    </div>
+
+    <select name="" id="select" onchange="selectcategoryfunc()">
+        <option value="All">All</option>
+        <option value="Tech">Tech</option>
+        <option value="Bussiness">Bussiness</option>
+        <option value="Lifestyle">Lifestyle</option>
+        <option value="Entertainment">Entertainment</option>
+    </select>
+
+    <button id="ascending">Ascending</button>
+    <button id="descending">Descending</button>
+
+  <div id="blogdata"></div>  
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal_container">
+            <!-- Append ALL the data Here -->
+        </div>
+    </div>
+</div>
+
+
+  <div class="pagination">
+    <button id="prev">Prev</button>
+    <button id="page">1</button>
+    <button id="next">Next</button>
+</div>
+
+</body>
+</html>
+<script>
+// let logindataformls=JSON.parse(localStorage.getItem("userlogin"))||[];
+    // appending part
+window.addEventListener("load",()=>{
+    getData()
+})
+let data;
+
+const  getData=async(page=1)=>{
+    
+        let res=await fetch(`https://lively-cap-duck.cyclic.app/blogs?_limit=4&_page=${page}`)
+    data=await res.json()
+    console.log(data)
+    localStorage.setItem("blogdata",JSON.stringify(data))
+    appendblogdatafunc(data)
+}
+let appendblogdatafunc=(data)=>{
+let container=document.querySelector("#blogdata")
+container.innerText=null;
+data.map((item)=>{
+
+    let div=document.createElement("div")
+
+    let div1=document.createElement("div")
+div1.setAttribute("class","flexdata")
+
+    let div2=document.createElement("div")
+
+    let div3=document.createElement("div")
+
+    let div4=document.createElement("div")
+
+    let img=document.createElement("img");
+    img.src="https://avatars.githubusercontent.com/u/101393663?v=4";
+
+    let username=document.createElement("h2");
+    username.innerText=item.username;
+
+    let title=document.createElement("p");
+    title.innerText=item.title;
+
+    let content=document.createElement("p");
+    content.innerText=item.content;
+
+    let date=document.createElement("p");
+    date.innerText=item.date;
+
+    let category=document.createElement("p");
+    category.innerText=item.category;
+
+    let edit=document.createElement("button");
+    edit.innerText="Edit";
+    edit.style.background="#FF7D54"
+    edit.setAttribute("class","editbtnstyle");
+    edit.addEventListener("click",()=>{
+                    modal.style.display = "block";
+                    updateddatafunc(item.id,item)
+                })
+
+    let remove=document.createElement("button");
+    remove.innerText="Delete";
+    remove.style.background="#D20F84"
+    remove.setAttribute("class","removebtnstyle")
+    remove.onclick=()=>{
+        remove_btn(item.id)
+    }
+
+    let addcomment=document.createElement("button");
+    addcomment.innerText="addcomment";
+    
+
+    div2.append(img)
+    div3.append(username,date,category)
+    div4.append(edit,remove)
+    div1.append(div2,div3,div4)
+    div.append(div1,title,content,addcomment)
+    container.append(div)
+
+})
+}
+   
+// filtering category
+function selectcategoryfunc(){
+let x=document.querySelector("#select").value;
+if(x=="All")
+{
+    appendblogdatafunc(data)  
+}
+else{
+    let filterdata=data.filter((item)=>{
+    return item.category==x
+})
+appendblogdatafunc(filterdata)
+}
+
+}
+// ascending and descending
+document.querySelector("#ascending").addEventListener("click",()=>{
+    ascendingfunc()
+})
+function ascendingfunc(){
+    data.sort((a,b)=>{
+       return a.date-b.date
+    })
+    appendblogdatafunc(data)
+}
+document.querySelector("#descending").addEventListener("click",()=>{
+    descendingfunc()
+})
+function descendingfunc(){
+    data.sort((a,b)=>{
+       
+       return b.date-a.date
+       
+    })
+    appendblogdatafunc(data)
+}
+// remove
+async function remove_btn(id){
+    let res=await fetch(`https://lively-cap-duck.cyclic.app/blogs/${id}`,{
+        method:"DELETE",
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+    getData()
+}
+// search part
+let datafromls=JSON.parse(localStorage.getItem("blogdata"))||[];
+document.querySelector("#search").addEventListener("click",()=>{
+    searchfunc()
+})
+function searchfunc(){
+let x=document.querySelector("#inputsearch").value;
+x=x.toLowerCase()
+let y=datafromls.filter((item)=>{
+    return item.title==x
+})
+appendblogdatafunc(y)
+}
+
+// pagination
+// let prebtn=document.querySelector("#prev").addEventListener("click",()=>{
+//     prevfun()
+// })
+// const prevfun=()=>{
+//     let pagenum=document.querySelector("#page")
+//     console.log(pagenum.value)
+//   if(Number(pagenum.value)>1){
+//    let page=Number(pagenum.innerText)
+
+//    console.log(page)
+//    pagenum.innerText=page-1
+//    pagenum.value=page-1;
+//    appendblogdatafunc(page-1)
+// }
+// }
+
+// let nextbutn=document.querySelector("#next").addEventListener("click",()=>{
+//     nextfun()
+// })
+// const nextfun=()=>{
+//     let pagenum=document.querySelector("#page")
+//    let page=Number(pagenum.innerText)
+//    console.log(page)
+//    pagenum.innerText=page+1
+//    pagenum.value=page+1;
+//    appendblogdatafunc(page+1)
+// }
+
+let prevbtn=document.querySelector("#prev").addEventListener("click",()=>{
+    prevbtnfunc()
+})
+const prevbtnfunc=()=>{
+    let pagenum=document.querySelector("#page");
+    if(Number(pagenum.value)>1)
+    {
+        let page=Number(pagenum.innerText);
+        pagenum.innerText=page-1;
+        pagenum.value=page-1;
+        getData(page-1);
+    }
+}
+
+let nextbtn=document.querySelector("#next").addEventListener("click",()=>{
+    nextbtnfunc()
+})
+
+const nextbtnfunc=()=>{
+    let pagenum=document.querySelector("#page");
+        let page=Number(pagenum.innerText);
+        console.log(page)
+        pagenum.innerText=page+1;
+        pagenum.value=page+1;
+        // appendblogdatafunc(page+1)
+        getData(page+1)
+    
+}
+
+// update
+// span.onclick = function () {
+//         modal.style.display = "none";
+       
+        
+//     }
+//     document.getElementsByClassName("closed")[0].onclick = function () {
+       
+        
+//         comment.style.display = "none";
+//     }
+//     window.onclick = function (event) {
+//         if (event.target == modal) {
+//             modal.style.display = "none";
+//         comment.style.display = "none";
+
+//         }
+//     }
+//     window.onclick = function (event) {
+//         if (event.target == comment) {
+         
+            
+//         comment.style.display = "none";
+
+//         }
+//     }
+// function updateddatafunc(id,item){
+
+// }
+
+</script>

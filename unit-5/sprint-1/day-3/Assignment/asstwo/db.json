@@ -1,0 +1,48 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "type": "Learned",
+      "message": "useState",
+      "likes": 3
+    },
+    {
+      "id": 2,
+      "type": "Learned",
+      "message": "useEffect",
+      "likes": 6
+    },
+    {
+      "id": 3,
+      "type": "Learning",
+      "message": "useRef",
+      "likes": 1
+    },
+    {
+      "id": 4,
+      "type": "Pending",
+      "message": "useReducer",
+      "likes": 5
+    },
+    {
+      "id": 5,
+      "type": "Revision",
+      "message": "React-101",
+      "likes": 2
+    },
+    {
+      "id": 6,
+      "type": "Pending",
+      "message": "redux",
+      "likes": 1
+    },
+    {
+      "id": 7,
+      "type": "Learning",
+      "message": "Typescript",
+      "likes": 1
+    }
+   
+    
+  ]
+}

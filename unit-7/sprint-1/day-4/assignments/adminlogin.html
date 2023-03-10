@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        #nav{
+            background-color: aqua;
+            text-align: center;
+        }
+       form{
+        display: block;
+        width:500px;
+        height:400px;
+        margin-left: 400px;
+        margin-top: 100px;
+       }
+       input{
+        display: block;
+        padding:10px;
+        margin:auto;
+        font-size: 25px;
+        margin:20px;
+        width:450px;
+       }
+       #submit{
+        display: block;
+        padding:10px;
+        margin:auto;
+        font-size: 25px;
+        margin:20px;
+        width:450px;
+       }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <h1>Admin Login</h1>
+    </div>
+    <!-- <form id="form">
+        <input id="email" type="text" placeholder="enter email here"/>
+        <input id="password" type="text" placeholder="enter password here"/>
+        <button id="submit">Submit</button>
+    </form> -->
+    <form id="form">
+        <input type="email" id="email" placeholder="enter email">
+        <input type="password" id="password" placeholder="enter password">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+<script>
+//   document.querySelector("#form").addEventListener("submit",()=>{
+//     adminlogin()
+//   })
+
+// function adminlogin(e){
+//     e.preventDefault();
+//         let data={
+//             email:document.querySelector("#email").value,
+//             password:document.querySelector("#password").value
+//         }
+//          fetch("https://reqres.in/api/login",{
+//             method:"POST",
+//             headers:{
+//                 "Content-Type":"application/json"
+//             },
+//             body:JSON.stringify(data)
+//         })
+//         .then((res)=>res.json())
+//        .then((res)=>{
+//         if(res.token){
+//             window.location.href="./index.html";
+//         }
+//         else{
+//             alert("wrond")
+//         }
+//        })
+//        .catch((err)=>console.log(err))
+      
+//             }
+document.getElementById("form").addEventListener("submit",login);
+    function login(e){
+        e.preventDefault();
+        let login=
+        {
+            password:document.getElementById("password").value,
+            email:document.getElementById("email").value
+    }
+        console.log(login)
+        fetch(`https://reqres.in/api/login`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            }
+            ,body:JSON.stringify(login)
+        }).then(res=>res.json()).then((res)=>{
+            if(res.token)
+            {
+ window.location.href="./admindashboard.html";
+
+}
+else{
+    alert("Wrong credential, Please put right credential!!")
+}
+}).catch(err=>console.log(err))
+    }
+</script>

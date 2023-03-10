@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Page</title>
+    <style>
+      .nav{
+        display: flex;
+        justify-content: space-around;
+      }
+      /* All Your css for Order page goes here  */
+      #order-container{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+
+      }
+    input,button{
+        padding:5px;
+        font-size: 20px;
+
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <h1>Web Coffee Shop Menu</h1>
+      <a href="./index.html">Home</a>
+      <a href="./order.html">Ordered</a>
+    </div>
+    <h1 id="total">
+      Your total order value is :- <span id="order-total">0</span>
+    </h1>
+    <div id="cupon">
+      <input type="text" id="coupancode" />
+      <button id="coupancodeadd">Add Cupon</button>
+    </div>
+    <div id="order-container">
+      <!-- Here Append All the Order Cards here-->
+    </div>
+  </body>
+  <script>
+
+    // All your JS code for Order Page goes here
+    let datafromlocals=JSON.parse(localStorage.getItem("buy"))||[];
+
+    // total amount
+    let total = datafromlocals.reduce((acc, el) =>{
+return acc + el.price;
+    } , 0)
+  document.querySelector("#order-total").innerText=`${total}`;
+  localStorage.setItem("totalprice",JSON.stringify(total))
+
+// apply coupan
+document.querySelector("#coupancodeadd").addEventListener("click",()=>{
+  applycoupandata()
+})
+function applycoupandata(){
+  let inputcoupan=document.querySelector("#coupancode").value;
+ let totaldis=JSON.parse(localStorage.getItem("totalprice"))||[];
+ console.log(typeof totaldis)
+  if(inputcoupan=="Masai30")
+  {
+    totaldis=Math.floor(totaldis*0.7)
+    localStorage.setItem("totalprice",JSON.stringify(totaldis))
+    document.querySelector("#order-total").innerText=`${totaldis}`;
+  }
+ 
+}
+//appned data
+
+    function appnedaatafromls(datafromlocals){
+      let menuitem=document.querySelector("#order-container")
+      datafromlocals.map((item)=>{
+
+        let div=document.createElement("div")
+
+        divingr=document.createElement("div");
+
+        let divbottom=document.createElement("div");
+        divbottom.setAttribute("id","deltaislprice")
+
+        let img=document.createElement("img")
+        img.src=item.image;
+        img.style.width="300px";
+        img.style.height="300px";
+        img.style.margin="5px";
+
+        let title=document.createElement("h1")
+        title.innerText=item.title;
+
+        let description=document.createElement("p")
+        description.innerText=item.description;
+        description.style.width="300px"
+
+        let ingredient1=document.createElement("p")
+        ingredient1.innerText=item.ingredients[0];
+
+        let price=document.createElement("p")
+        price.innerText=item.price;
+
+        let subs=document.createElement("button")
+        subs.innerText="-";
+
+        let num=document.createElement("button")
+        num.innerText="1";
+
+        let add=document.createElement("button")
+        add.innerText="+";
+
+        let Cancel=document.createElement("button")
+        Cancel.innerText="Cancel";
+        Cancel.addEventListener("click",()=>{
+          cancelfromcart()
+        })
+
+        menuitem.append(div)
+        divbottom.append(subs,num,add,Cancel)
+        divingr.append(ingredient1)
+        div.append(img,divingr,title,description,price,divbottom)
+      })
+    }
+    appnedaatafromls(datafromlocals)
+
+
+function cancelfromcart(i){
+  datafromlocals.splice(i,1)
+  localStorage.setItem("buy",JSON.stringify(datafromlocals))
+  window.location.reload()
+}
+
+
+  </script>
+</html>
+

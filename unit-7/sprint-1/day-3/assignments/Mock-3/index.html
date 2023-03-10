@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    
+    <style>
+      .nav{
+        display: flex;
+        justify-content: space-around;
+      }
+      /* All Your css for Home page goes here  */
+      #menu-container{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+      }
+      #filter>input,#filter>button{
+        padding:5px;
+        font-size: 20px;
+
+      }
+      #lower{
+        margin-left: 450px;
+      }
+      select,option{
+        padding: 6px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav">
+      <h1>Web Coffee Shop Menu</h1>
+      <a href="./index.html">Home</a>
+      <a href="./order.html">Ordered</a>
+    </div>
+    <div id="filter">
+      <input type="number" id="lower" />
+      <input type="number" id="upper" />
+      <button id="filter-btn">Filter</button>
+    </div>
+    <select id="sort">
+      <option value="">Sort By Price</option>
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+    <h1 id="alert"></h1>
+    <div id="menu-container">
+      <!-- Here Append All the Items  -->
+    </div>
+  </body>
+  <script>
+    // All your JS code for Home Page goes here
+    const url = `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee`;
+
+const getData=async()=>{
+let res=await fetch(url)
+let data=await res.json();
+console.log(data.data);
+appendHomeData(data.data);
+localStorage.setItem("alldata",JSON.stringify(data.data))
+}
+getData()
+
+const appendHomeData=(data)=>{
+  let menuitem=document.querySelector("#menu-container");
+  menuitem.innerHTML="";
+data.map((item)=>{
+  let div=document.createElement("div");
+  
+
+divingr=document.createElement("div");
+
+
+let img=document.createElement("img")
+img.src=item.image;
+img.style.width="300px"
+img.style.height="300px"
+
+let title=document.createElement("h1")
+title.innerText=item.title;
+
+let description=document.createElement("p")
+description.innerText=item.description;
+description.style.width="300px"
+
+let ingredient1=document.createElement("p")
+ingredient1.innerText=item.ingredients[0];
+
+let ingredient2=document.createElement("p")
+ingredient2.innerText=item.ingredients[1];
+
+let price=document.createElement("p")
+price.innerText=`₹ ${item.price}`;
+
+let btn=document.createElement("button")
+btn.innerText="Buy";
+btn.style.padding="5px";
+btn.style.marginBottom="10px";
+btn.style.marginLeft="100px";
+btn.style.background="rgb(43,182,246)";
+btn.style.borderRadius="5px";
+btn.style.color="white";
+btn.style.fontSize="18px";
+btn.addEventListener("click",()=>{
+  additemtocard(item)
+})
+
+menuitem.append(div)
+divingr.append(ingredient1,ingredient2)
+div.append(img,title,description,divingr,price,btn)
+
+})
+}
+
+let arr=JSON.parse(localStorage.getItem("buy")) ||[];
+
+function additemtocard(item){
+  arr.push(item)
+  localStorage.setItem("buy",JSON.stringify(arr));
+  alert("Successfully Placed Order")
+}
+
+// filtering
+let datafromls=JSON.parse(localStorage.getItem("alldata"))||[];
+// const lower=document.querySelector("#lower")
+// const higher=document.querySelector("#upper")
+// const filterbtn=document.querySelector("#filter-btn")
+// filterbtn.addEventListener("click",()=>{
+//   const lowerpr=lower.value;
+//   const higherpr=higher.value;
+//   const filterdata=datafromls.filter((elem)=>{
+//     const price=elem.price;
+//     return price>=lowerpr && price<=higherpr;
+//   })
+//   appendHomeData(filterdata)
+// })
+
+let filterbutton=document.querySelector("#filter-btn").addEventListener("click",()=>{
+  filterbyimputtakeing()
+})
+
+function filterbyimputtakeing()
+{
+  let input1=+document.querySelector("#lower").value;
+  let input2=+document.querySelector("#upper").value;
+  let filterdata=datafromls.filter((item)=>{
+    return item.price>=input1 && item.price<=input2;
+  })
+  appendHomeData(filterdata)
+}
+
+
+
+//sort by porice
+document.querySelector("#sort").addEventListener("change",()=>{
+  sortbyprice()
+})
+async function sortbyprice(){
+  let sort1=document.querySelector("#sort").value;
+  console.log(sort1)
+  try{
+    if(sort1==="asc")
+    {
+      let res=await fetch(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee?sort=price&order=asc`)
+      let data=await res.json();
+      appendHomeData(data.data);
+    }
+    else if(sort1==="desc")
+    {
+      let res=await fetch(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee?sort=price&order=desc`)
+      let data=await res.json();
+      appendHomeData(data.data);
+    }
+    else if(sort1==="")
+    {
+      let res=await fetch(`https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-coffee`)
+      let data=await res.json();
+      appendHomeData(data.data);
+    }
+  }
+catch(err){
+console.log(err)
+}
+}
+
+
+
+
+  </script>
+</html>

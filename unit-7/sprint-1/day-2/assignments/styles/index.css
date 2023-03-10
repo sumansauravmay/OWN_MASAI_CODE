@@ -1,0 +1,95 @@
+#navbar{
+    display: flex;
+    justify-content: space-around;
+}
+.playername,.playerposition{
+    font-size: 20px;
+    margin-left:10px;
+   
+}
+.playerposition{
+    margin-top: -15px;
+}
+.playerdel{
+    padding:10px;
+    margin:5px;
+   border:0px solid white;
+    background-color: purple;
+    color:wheat;
+    border-radius: 6px;
+    margin-left:10px;
+    width:30%;
+}
+.playerdatadiv{
+    margin-left:350px;
+    margin-top:30px;
+    width:300px;
+    display: grid;
+    gap:20px;
+}
+#search{
+    padding:6px;
+    font-size: 16px;
+    margin-left: 500px;
+    margin-top: 15px;
+    width:300px;
+    border-radius: 8px;
+}
+#serchbtn{
+    padding:6px;
+}
+#playerdata{
+    display: grid;
+    grid-template-columns: repeat(3,200px);
+    gap:20px;
+}
+#prev{
+    font-size: 20px;
+    padding: 6px;
+    margin-top: 50px;
+    margin-left: 550px;
+}
+#next, #page{
+    font-size: 20px;
+    padding: 6px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+  

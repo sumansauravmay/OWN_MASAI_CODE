@@ -1,0 +1,20 @@
+{
+    "movie": [
+        {
+            "id": 1,
+            "name": "Thor",
+            "Rating": 4.5,
+            "Description": "Blockbuter",
+            "Genre": "top hero",
+            "Cast": "USA"
+        },
+        {
+            "id": 2,
+            "name": "3 idiots",
+            "Rating": 4.6,
+            "Description": "Blockbuter",
+            "Genre": "India",
+            "Cast": "Amir khan, Virus"
+        }
+    ]
+}

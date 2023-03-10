@@ -1,0 +1,364 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <style>
+        #nav{
+            background-color: aqua;
+            text-align: center;
+        } 
+        .flexdiv{
+            display: flex;
+
+        }
+        #userpage{
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+            margin-top:50px;
+        }
+
+        .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+select,option,#slth,#shtl{
+        padding:10px;
+        font-size: 20px;
+        margin:10px;
+      }
+
+
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <h1>Welcome to user deshboard</h1>
+    </div>
+
+    <select id="genrefilter" onchange="selectfilterbygenre()">
+        <option value="All">All</option>
+        <option value="science">Science</option>
+        <option value="fiction">Fiction</option>
+        <option value="history">History</option>
+        <option value="tech">Tech</option>
+        <option value="bussiness">Bussiness</option>
+    </select>
+
+    <button id="slth">Sort_low_to_high</button>
+    <button id="shtl">Sort_low_to_high</button>
+
+    <button id="shtl">
+<a href="./userborrow.html">Borrowed Book</a>
+    </button>
+
+    <div id="userpage"></div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal_container">
+                <!-- Append ALL the data Here -->
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+<script>
+    // append
+    window.addEventListener("load",()=>{
+    getData()
+})
+let data;
+async function getData(){
+let res=await fetch("https://wild-puce-dragonfly-belt.cyclic.app/bookdata")
+ data=await res.json();
+console.log(data)
+appenddomintable(data)
+}
+
+function appenddomintable(data){
+    document.querySelector("#userpage").innerHTML="";
+
+    data.map((item)=>{
+        let div=document.createElement("div")
+        div.setAttribute("class","flexdiv")
+
+let div2=document.createElement("div")
+
+let div3=document.createElement("div")
+
+        let img=document.createElement("img")
+        img.src=item.image_url;
+        img.style.width="300px"
+
+        let name=document.createElement("h1")
+        name.innerText=item.book_name;
+
+        let author=document.createElement("p")
+        author.innerText=item.author;
+        author.style.fontSize="20px"
+        author.style.marginLeft="50px"
+
+        let genre=document.createElement("p")
+        genre.innerText=item.genre;
+        genre.style.fontSize="20px"
+        genre.style.marginLeft="50px"
+
+        let edition=document.createElement("p")
+        edition.innerText=item.edition;
+        edition.style.fontSize="20px"
+        edition.style.marginLeft="50px";
+
+        let cost=document.createElement("p")
+        cost.innerText=item.cost;
+        cost.style.fontSize="20px"
+        cost.style.marginLeft="50px"
+
+        let borrowed=document.createElement("button")
+        borrowed.innerText="Borrow";
+        borrowed.style.fontSize="20px"
+        borrowed.style.marginLeft="50px";
+        borrowed.style.padding="10px";
+        borrowed.style.color="white";
+        borrowed.style.background="#66B600";
+        borrowed.style.border="0px";
+        borrowed.setAttribute("class","bookdetails")
+        borrowed.addEventListener("click", ()=>{
+            submitborrowedBtn(item)
+        });
+
+
+        div2.append(name,author,genre,edition,cost,borrowed)
+        div3.append(img)
+        document.querySelector("#userpage").append(div)
+        div.append(div3,div2)
+
+    })
+}
+// modal
+function submitborrowedBtn(item){
+    let arr=[];
+    arr.push(item)
+    localStorage.setItem("namesOfBook", JSON.stringify(arr))||[];
+    modal.style.display = "block";
+    let bookData = JSON.parse(localStorage.getItem("namesOfBook"))||[];
+    ModalData(bookData)
+}
+
+const modal = document.getElementById("myModal");
+const btn = document.querySelector(".bookdetails");
+const span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() {
+    modal.style.display = "none";
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  
+  
+  
+  const ModalData=(bookData)=>{
+  
+      let modal_container = document.getElementById("modal_container");
+          modal_container.innerHTML=null
+  
+          bookData.map((item)=>{
+            let div=document.createElement("div")
+        div.setAttribute("class","flexdiv")
+
+        let div2=document.createElement("div")
+
+        let div3=document.createElement("div")
+
+        let div4=document.createElement("div")
+
+        let img=document.createElement("img")
+        img.src=item.image_url;
+        img.style.width="300px"
+
+        let name=document.createElement("h1")
+        name.innerText=item.book_name;
+
+        let author=document.createElement("p")
+        author.innerText=item.author;
+        author.style.fontSize="20px"
+        author.style.marginLeft="50px"
+
+        let genre=document.createElement("p")
+        genre.innerText=item.genre;
+        genre.style.fontSize="20px"
+        genre.style.marginLeft="50px"
+
+        let edition=document.createElement("p")
+        edition.innerText=item.edition;
+        edition.style.fontSize="20px"
+        edition.style.marginLeft="50px"
+
+        let cost=document.createElement("p")
+        cost.innerText=`Total Cost: ${item.cost}`;
+        cost.style.fontSize="20px"
+        cost.style.marginLeft="50px"
+
+        let close=document.createElement("button")
+        close.innerText="Close";
+        close.style.fontSize="20px"
+        close.style.marginLeft="50px";
+        close.style.padding="10px";
+        close.style.color="white";
+        close.style.background="#66B600";
+        close.style.border="0px";
+        close.onclick = function() {
+    modal.style.display = "none";
+  }
+
+        let confirm=document.createElement("button")
+        confirm.innerText="Confirm";
+        confirm.style.fontSize="20px"
+        confirm.style.marginLeft="50px";
+        confirm.style.padding="10px";
+        confirm.style.color="white";
+        confirm.style.background="#66B600";
+        confirm.style.border="0px";
+        confirm.setAttribute("id","confirmtn")
+        confirm.onclick = function() { 
+        
+        // submitborrowedconfirmBtn(item.id,item.img,item.name,item.author,item.genre,item.edition,item.cost)
+        borrowedbookdata(item.id,item)
+        // modal.style.display = "none";
+  }
+
+div4.append(close,confirm)
+        div2.append(name,author,genre,edition,cost,div4)
+        div3.append(img)
+        modal_container.append(div)
+        div.append(div3,div2)
+          
+        
+        })
+    }
+//    filtering
+function selectfilterbygenre(){
+    let x=document.querySelector("#genrefilter").value;
+if(x=="All")
+{
+    appenddomintable(data)
+}
+else{
+    let selctdata=data.filter((item)=>{
+    return item.genre==x;
+})
+appenddomintable(selctdata)
+}
+}
+
+
+document.querySelector("#slth").addEventListener("click",()=>{
+    sortbypricefunc()
+})
+function sortbypricefunc(){
+data.sort((a,b)=>{
+   return a.cost-b.cost;
+})
+appenddomintable(data)
+}
+document.querySelector("#shtl").addEventListener("click",()=>{
+    sortbypricefunc2()
+})
+function sortbypricefunc2(){
+data.sort((a,b)=>{
+   return b.cost-a.cost;
+})
+appenddomintable(data)
+}
+
+// borrowed book
+
+// async function  submitborrowedconfirmBtn(id,img,name,author,genre,edition,cost){
+//     let data={id,img,name,author,genre,edition,cost};
+
+// let res=await fetch(`https://wild-puce-dragonfly-belt.cyclic.app/borrowbook`,
+// {
+//     method:"POST",
+//     body:JSON.stringify(data),
+//     headers:{
+//         "Content-Type":"application/json"
+//     }
+// })
+// let borrowdata=await res.json()
+// }
+
+function borrowedbookdata(id, item) {
+    
+        document.getElementById("confirmtn").addEventListener("click",borrowdata)
+
+        function borrowdata() {
+           let x= fetch(`https://wild-puce-dragonfly-belt.cyclic.app/bookdata/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ ...item, borrowed: true })
+            })
+            
+            getData()
+        }
+    }
+
+
+</script>
+
+

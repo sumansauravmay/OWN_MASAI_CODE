@@ -1,0 +1,103 @@
+# Authentication App (FullStack)
+
+## Instructions:
+
+- Read the entire question carefully for at least 15 mins, understand it and then code it.
+- Commit your code every 30min with a proper commit message to your repository (we will monitor every commit)
+- Use **React** for Frontend.
+- Use **Node,Express, Mongo (NEM)** for backend.
+
+---
+
+## Problem Statement:
+
+The objective is to create a full stack authentication app with React as frontend, and NEM as backend.
+
+## Backend:
+
+Backend for the app should be created using NEM, using JSON server or localStorage to implement the functionality will be considered null and void.
+
+### Functionalities:
+
+- The user should be able to manually signup for a new account using “**register**” API.
+- The user should be able to login manually using “l**ogin**” API.
+- The user can log in or register with at least one of the following services **(OAuth)**:
+    - Google
+    - Facebook
+    - Twitter
+    - Github
+- The user should be able to see profile details using “**getProfile**” API.
+- The user should be able to edit his details including
+    - Profile picture
+    - Name
+    - Bio
+    - Phone
+    - Email
+    - Password
+- Follow all the ideal coding standards, hash the password using any encrypting library such as “**bcrypt**” before storing in database, generate **“jsonwebtoken**” for successful login.
+
+---
+
+## Frontend:
+
+- Use React for the frontend part of the app.
+- Your app should have a navbar with the following routes
+    - Signup
+    - Signin
+    - Profile Details
+    - Edit Profile
+
+### **Signup & Signin Route**
+
+![                                                             Reference Image - 1](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/da56b545-98ee-4caf-9a55-dd2924d7b640/Login_Register.png)
+
+                                                             Reference Image - 1
+
+- The user should be able to register and login manually.
+- User should be able to login using OAuth of any of the mentioned services.
+- On login a “jsonwebtoken” should be generated from backend, and should be stored in localStorage.
+
+---
+
+### **Profile Details Route**
+
+![                                                                           Reference Image - 2](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d388edcd-0465-436a-a9fd-5a142d9ac1e5/Profile_Route.png)
+
+                                                                           Reference Image - 2
+
+- On visiting this route, all the details of the user should be fetched from the backend and displayed in the UI.
+- The page should have logout button, which when clicked, the generated “jsonwebtoken” should  cancel and delete it from localStorage.
+- There should be a edit profile button which when clicked the user should be redirected to the Edit Profile route.
+
+---
+
+### Edit **Profile Route**
+
+![                                                          Reference Image - 3](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5ba970b0-a6b8-4b34-82cb-068683fe1bda/Group_2.png)
+
+                                                          Reference Image - 3
+
+- On visiting this page, the user should be able to edit the details, and the changes should be reflected in the backend as well as UI.
+
+---
+
+### **`Submission`**
+
+- Please submit deployed link and Github link of code.
+- ***Deploy JSON server too.
+- Please double check if deployed version works or not (run deployed version on your laptop and then submit it)
+- Any issues in deployed link, will be considered null and void.
+- Please verify your submissions are correct.
+- Make sure you follow all instructions carefully.
+- Submit before deadline.
+
+### **`Rubrics`**
+
+### Rubrics / Criteria to be judged upon
+
+- React
+- Node, Express, Mongo
+- OAuth
+- Backend API
+- Decent UI
+- Code cleanliness and folder structure.

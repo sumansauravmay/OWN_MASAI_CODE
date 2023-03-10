@@ -1,0 +1,340 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+         #nav{
+            background-color: aqua;
+            text-align: center;
+        }
+        form,input,option,select{
+        display: block;
+        font-size: 25px;
+        padding: 10px;
+        margin:10px;
+    }
+
+    input,option,select{
+        width:400px;
+        margin-left:540px;
+    }
+    
+   
+    #submit{
+        width:400px;
+        margin-left:540px;
+        padding: 10px;
+        font-size: 25px;
+    }
+    table,td,th{
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        text-align:left;
+      }
+      table{
+        border-collapse: collapse;
+        width:70%;
+        margin:auto;
+        margin-top:50px;
+      }
+      th,td{
+        padding:15px;
+      }
+      tr>th{
+        background-color:teal;
+        color:white;
+      }
+
+      .modal {
+        display: none;
+
+        position: fixed;
+
+        z-index: 1;
+
+        left: 0;
+        top: 0;
+        width: 100%;
+
+        height: 100%;
+
+        overflow: auto;
+
+        background-color: rgb(0, 0, 0);
+
+        background-color: rgba(0, 0, 0, 0.4);
+
+    }
+
+
+
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <h1>Admin Dashboard</h1>
+    </div>
+
+    <input id="img" type="text" placeholder="enter image url"/>
+    <input id="name" type="text" placeholder="enter name here"/>
+    <input id="author" type="text" placeholder="enter author here"/>
+    <select name="" id="genre">
+        <option value="">Select Genre</option>
+        <option value="science">Science</option>
+        <option value="fiction">Fiction</option>
+        <option value="history">History</option>
+        <option value="tech">Tech</option>
+        <option value="bussiness">Bussiness</option>
+    </select>
+    <select name="" id="edition">
+        <option value="">Select Edition</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+    </select>
+    <input id="publisher" type="text" placeholder="enter publisher here"/>
+    <input id="cost" type="number" placeholder="enter cost"/>
+   <button id="submit">Submit</button>
+
+   <main>
+<table>
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Atuhor</th>
+            <th>Genre</th>
+            <th>Edition</th>
+            <th>Publisher</th>
+            <th>Cost</th>
+            <th>Borrowed</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- append data here -->
+    </tbody>
+</table>
+</main>
+
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="updateform">
+            <input type="text" placeholder="enter images of book" id="url">
+            <input type="text" placeholder="enter name of book" id="name">
+            <input type="text" placeholder="enter author of book" id="author">
+            <select id="genre">
+                <option value="">Genre</option>
+                <option value="science">Science</option>
+                <option value="fiction">Fiction</option>
+                <option value="history">History</option>
+                <option value="tech">Tech</option>
+                <option value="business">Business</option>
+            </select>
+            <select id="edition">
+                <option value="">Edition</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+            </select>
+            <input type="text" id="publisher" placeholder="enter publisher name">
+            <input type="number" id="cost" placeholder="enter cost of the book">
+
+            <input type="submit" value="update book">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+    
+    // add new book
+ document.querySelector("#submit").addEventListener("click",(e)=>{
+        addnewbooktolist(e)
+    })
+
+   async function addnewbooktolist(e){
+        e.preventDefault()
+        let data={
+            id:Date.now(),
+            image_url:document.querySelector("#img").value,
+            book_name:document.querySelector("#name").value,
+            author:document.querySelector("#author").value,
+             genre:document.querySelector("#genre").value,
+             edition:document.querySelector("#edition").value,
+             publisher:document.querySelector("#publisher").value,
+             cost:document.querySelector("#cost").value,
+             borrowed:false
+        }
+
+let res=await fetch("https://wild-puce-dragonfly-belt.cyclic.app/bookdata",
+{
+    method:"POST",
+    body:JSON.stringify(data),
+    headers:{
+        "Content-Type":"application/json"
+    }
+})
+let bookdata=await res.json()
+console.log(bookdata)
+document.querySelector("form").reset()
+    }
+
+//   append data
+
+window.addEventListener("load",()=>{
+    getData()
+})
+
+async function getData(){
+let res=await fetch("https://wild-puce-dragonfly-belt.cyclic.app/bookdata")
+let data=await res.json();
+console.log(data)
+appenddomintable(data)
+}
+
+function appenddomintable(data){
+    document.querySelector("tbody").innerHTML="";
+
+    data.map((item)=>{
+        let tr=document.createElement("tr")
+
+        let img=document.createElement("img")
+        img.src=item.image_url;
+        img.style.width="70px"
+
+        let name=document.createElement("td")
+        name.innerText=item.book_name
+
+        let author=document.createElement("td")
+        author.innerText=item.author
+
+        let genre=document.createElement("td")
+        genre.innerText=item.genre
+
+        let edition=document.createElement("td")
+        edition.innerText=item.edition
+
+        let publisher=document.createElement("td")
+        publisher.innerText=item.publisher
+
+        let cost=document.createElement("td")
+        cost.innerText=item.cost
+
+        let edit=document.createElement("td")
+        edit.innerText="Edit";
+        edit.style.cursor="pointer";
+        edit.setAttribute("class","editclassdata")
+        edit.addEventListener("click", () => {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "block"
+                let form = document.getElementById("updateform");
+                form.addEventListener("submit", () => {
+                    updatebookData(item.id)
+                modal.style.display = "none"
+                })
+                  
+            })
+
+        let remove=document.createElement("td")
+        remove.innerText="Delete";
+        remove.style.cursor="pointer"
+        remove.addEventListener("click",()=>{
+            deletefuncremove(item.id)
+        })
+
+        let borrowed=document.createElement("td")
+        borrowed.innerText=item.borrowed
+
+
+        document.querySelector("tbody").append(tr)
+        tr.append(img,name,author,genre,edition,publisher,cost,borrowed,edit,remove)
+
+    })
+    
+}
+// modal
+var span = document.getElementsByClassName("close")[0];
+    var modal = document.getElementById("myModal");
+
+span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function updatebookData(id) {
+        console.log(id)
+        let form = document.getElementById("updateform");
+        event.preventDefault();
+        let data = {
+            image_url:document.querySelector("#url").value,
+            book_name:document.querySelector("#name").value,
+            author: document.querySelector("#author").value,
+            genre: document.querySelector("#genre").value,
+            edition:document.querySelector("#edition").value,
+            publisher: document.querySelector("#publisher").value,
+            cost: document.querySelector("#cost").value,
+
+        }
+        console.log(data)
+        fetch(`https://wild-puce-dragonfly-belt.cyclic.app/bookdata/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        // .then((res) => res.json())
+        // .then((res) => getData())
+        getData()
+    }
+
+// delete
+async function deletefuncremove(id){
+    
+    let res=await fetch(`https://wild-puce-dragonfly-belt.cyclic.app/bookdata/${id}`,{
+        method:"DELETE",
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+    getData()
+    }
+
+
+
+</script>

@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Blog page</title>
+    <style>
+        #navbar{
+        background-color: aqua;
+        text-align: center;
+
+        }
+        form{
+            display: block;
+            margin-left: 450px;
+        }
+       input,select,option{
+        display: block;
+        font-size: 20px;
+        padding:10px;
+        margin:15px;
+        width:400px;
+       }
+       #btn{
+        margin-left: 600px;
+        font-size: 20px;
+        padding: 5px;
+       }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <h1>Add Blog Page</h1>
+    </div>
+    <div>
+        <button id="btn">
+            <a href="./blog.html">All Blog</a>
+        </button>
+    </div>
+    <form id="form">
+        <input id="username" type="text" placeholder="enter username"/>
+        <input id="title" type="text" placeholder="enter title"/>
+        <input id="content" type="text" placeholder="enter content"/>
+        <select name="" id="select">
+            <option value="">Category</option>
+            <option value="Tech">Tech</option>
+            <option value="Bussiness">Bussiness</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Entertainment">Entertainment</option>
+        </select>
+        <input id="date" type="date"/>
+        <input id="submit" type="submit" value="Post Blog"/>
+    </form>
+</body>
+</html>
+<script>
+     let submit_btn= document.querySelector("#submit");
+   submit_btn.onclick=()=>{
+    addblogdata(event)
+   }
+
+async function addblogdata(event){
+    event.preventDefault();
+
+
+    let data={
+            username:document.querySelector("#username").value,
+            title:document.querySelector("#title").value,
+            content:document.querySelector("#content").value,
+            category:document.querySelector("#select").value,
+            date:document.querySelector("#date").value
+        }
+        console.log(data)
+        await fetch("https://lively-cap-duck.cyclic.app/blogs",{
+            method:"POST",
+            body:JSON.stringify(data),
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+       .then((res)=>res.json())
+
+}
+
+
+</script>

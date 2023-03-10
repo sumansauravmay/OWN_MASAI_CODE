@@ -1,0 +1,93 @@
+# Bug Tracker
+
+## `**Instructions**`
+
+- Read the entire question carefully for at least 15 mins, understand it and then code it.
+- Don’t jump directly into the code.
+- Commit your code every hour with a proper commit message to your repository (we will monitor every commit)
+- Use **React** to solve this question.
+- **Create your own custom backend using NEM for Sign in and Sign up**.
+- Use **Redux** for state management.
+- Use **Chakra-UI** for styled components.
+
+---
+
+# `**Problem Statement**`
+
+- The objective is to create a bug-tracking app, where the user can add bugs/issues based on their severity (Critical, Major, Medium, and Low) as cards and can re-arrange the cards using drag and drop.
+- The app should have a Navbar with the following routes
+    - Sign up Route
+    - Sign in Route
+    - Dashboard Route
+
+---
+
+# `**Sign-up Route**`
+
+- This user should be prompted by a signup form, where the user will enter the following credentials
+    - Email
+    - Password
+- On form submit store this credential in your backend using the route “**/signup**”.
+- Follow all the coding standards, hash the password using any encrypting library such as “**bcrypt**” before storing in database.
+- After signing up successfully, the user should be redirected to the Sign in route.
+
+---
+
+# `**Sign-in Route**`
+
+- This user should be prompted by a login form, where the user will enter the following credentials
+    - Email
+    - Password
+- On form submit, match the entered credentials with the data stored in your backend (Verify both email and password) using the backend route “**/login**”
+- On successful validation alert “**Login Successful**”, generate a token for the user using **jsonwebtoken** (store the token in localStorage**)**  and redirect the user to Dashboard page.
+- On entering wrong credential, alert “**Invalid Credentials**” and re-prompt the user to enter valid credentials.
+- **Note : You will be creating your own custom backend for login and signup, using JSON server to implement this will be considered void.**
+
+---
+
+# `**Dashboard Route**`
+
+- The dashboard page should be a private route, only users who have signed in can access this route.
+- The page should have 4 stacks of cards as listed below with the specified color scheme
+    - Critical Severity  - (Red)
+    - Major Severity - (Orange)
+    - Medium Severity - (Blue)
+    - Low Severity - (Green)
+- The user should be able to add cards on each stack by clicking on the “Report Bug” button on top of each stack. (You can implement this as a modal)
+- The user should be able to rearrange the cards by drag and drop, both inside the same stack as well as moving into another stack.
+    - You can make use of [**react-beautiful-dnd npm package**](https://www.npmjs.com/package/react-beautiful-dnd) to implement this or any external package of your choice.
+- All cards within a stack should maintain the specified color, even if they are moved from another stack.
+- The user should be able to edit the text inside the cards. **(optional)**
+- The user should be able to delete the card from the stack and on delete, the bottom cards need to shift upwards.
+- The maximum limit of cards in each stack is 5. The user should not be able to add any more cards to the stack if the limit is exceeded.
+
+![                                                                              Reference Image](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cab3b3fd-fc73-4a69-a65c-4c5b227469f2/Bug_Tracker_Figma.jpg)
+
+                                                                              Reference Image
+
+[                                       Reference Video on How Drag and Drop should work](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c9e17792-38a2-409d-9c35-a64f5adf3cd1/Bug_Tracker_Reference_Video.mp4)
+
+                                       Reference Video on How Drag and Drop should work
+
+---
+
+### **`Submission`**
+
+- Please submit deployed link and Github link of the code.
+- Please double-check if deployed version works or not (run the deployed version on your laptop and then submit it)
+- Any issues in the deployed link will be considered null and void.
+- Please verify your submissions are correct.
+- Make sure you follow all instructions carefully.
+- Submit before the deadline.
+
+### **`Rubrics`**
+
+### Rubrics / Criteria to be judged upon
+
+- React Drag and Drop
+- NEM Backend
+- React Routing
+- Redux
+- Functionalities
+- UI
+- Code cleanliness and folder structure.

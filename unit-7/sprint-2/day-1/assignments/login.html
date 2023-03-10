@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        #navbar{
+        background-color: aqua;
+        text-align: center;
+
+        }
+        form{
+            display: block;
+            margin-left: 450px;
+        }
+       input{
+        display: block;
+        font-size: 20px;
+        padding:10px;
+        margin:15px;
+        width:400px;
+     
+       }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <h1>Login</h1>
+    </div>
+    
+    <form id="form">
+        <input id="email" type="text" placeholder="enter email"/>
+        <input id="password" type="text" placeholder="enter password"/>
+        <input id="submit" type="submit" value="Log in"/>
+    </form>
+    
+</body>
+</html>
+<script>
+     let submit_btn= document.querySelector("#submit");
+   submit_btn.onclick=()=>{
+    loginformdata(event)
+   }
+
+let loginformdata=async(e)=>{
+e.preventDefault()
+// let userdel={
+    email=document.querySelector("#email").value;
+    password=document.querySelector("#password").value;
+// }
+let res=await fetch("https://lively-cap-duck.cyclic.app/users")
+let data=await res.json()
+let user_exist=data.find((el)=>el.email)
+if(user_exist){
+    if(user_exist.password==password)
+    {
+        alert("login successful")
+        window.location.href="./blog.html";
+        localStorage.setItem("userlogin",JSON.stringify(user_exist))
+    }
+    else{
+        alert("plese put right password")
+    }
+}
+else{
+    alert("login failed")
+}
+}
+
+</script>

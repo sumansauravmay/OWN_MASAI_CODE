@@ -1,0 +1,30 @@
+{
+    "student": [
+        {
+            "name": "Suman",
+            "city": "Delhi"
+        },
+        {
+            "name": "Saurav",
+            "city": "Noida"
+        },
+        {
+            "name": "Pradeep kumar",
+            "city": "Delhi"
+        }
+    ],
+    "teacher": [
+        {
+            "name": "Varun",
+            "sub": "Coding"
+        },
+        {
+            "name": "Ankush",
+            "sub": "DSA"
+        },
+        {
+            "name": "Swanand",
+            "sub": "Coding"
+        }
+    ]
+}

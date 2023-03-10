@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        #navbar{
+        background-color: aqua;
+        text-align: center;
+
+        }
+      table,th,td{
+        text-align: center;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
+      table{
+        border-collapse: collapse;
+        width:70%;
+        margin:auto;
+        margin-top:50px;
+      }
+      td,th{
+        padding:15px;
+      }
+      tr>th{
+        background-color: teal;
+        color:white
+      }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <h1>Leaderboard Page</h1>
+    </div>
+    
+  <main>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Number of blogs</th>
+                <th>Total Likes</th>
+                <th>Total Comments</th>
+            </tr>
+        </thead>
+       
+<tbody>
+    <!-- append data in tabular formate -->
+</tbody>
+
+    </table>
+  </main>
+</body>
+</html>
+<script>
+    window.addEventListener("load",()=>{
+    getData()
+})
+
+const  getData=async()=>{
+    let res=await fetch(`https://lively-cap-duck.cyclic.app/blogs`)
+    let data=await res.json()
+    console.log(data)
+    appendblogdatafunc(data)
+}
+let appendblogdatafunc=(data)=>{
+let container=document.querySelector("tbody")
+container.innerHTML="";
+data.map((item)=>{
+
+    let div=document.createElement("tr")
+
+    let username=document.createElement("td");
+    username.innerText=item.username;
+
+    let blogs=document.createElement("td");
+    blogs.innerText=(item.content).length;
+
+    let likes=document.createElement("td");
+    likes.innerText=item.likes;
+
+    let comments=document.createElement("td");
+    comments.innerText=(item.comments).length;
+
+    div.append(username,blogs,likes,comments)
+    container.append(div)
+
+})
+}
+</script>
