@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="common.css"/>
+ <style>
+    h1{
+        text-align: center;
+        color:teal;
+    }
+    form{
+            width:50%;
+            margin:auto;
+           
+        }
+        input{
+            font-size:20px;
+            display:block;
+            /* margin:auto; */
+            margin-top: 20px;
+            margin-left: 200px;
+           
+            
+        }
+       
+        #submit{
+            margin-left:280px
+        }
+        #upto{
+            display: flex;
+            justify-content: space-evenly;
+        }
+ </style>
+</head>
+<body>
+        <div id="upto">
+            <h3><a href="signup.html">Sign up</a></h3>
+            <h3><a href="signin.html">Sign in</a></h3>
+           
+    </div>
+    <h1>Sign In</h1>
+        <form>   
+            <input type="text" id="email" placeholder="Enter your email here">
+            <input type="text" id="password" placeholder="set password here">
+            <input id="submit" type="submit">
+        </form>
+</body>
+</html>
+
+<script>
+
+let arr=JSON.parse(localStorage.getItem("userData"))|| [];
+    document.querySelector("form").addEventListener("submit",function(event){
+        event.preventDefault();
+        let obj={
+            customerEmail:document.querySelector("#email").value,
+            customerPassword:document.querySelector("#password").value
+        };
+if(checkSignin(obj.customerEmail,obj.customerPassword)==false)
+{
+    alert("Wrong email or password")
+    // localStorage.setItem("signin",JSON.stringify(arr));
+    // alert("Sign in successfully")
+    // window.location.href="product.html";
+}
+else
+{
+    // alert("Wrong email or password")
+    localStorage.setItem("signin",JSON.stringify(arr));
+    alert("Sign in successfully")
+    window.location.href="index.html";
+}
+     document.querySelector("form").reset();
+    })
+    function checkSignin( customerEmail,customerPassword){
+            let filter=arr.filter(function(elem){
+                return elem.customerEmail==customerEmail && elem.customerPassword==customerPassword
+            });
+            if(filter.length>0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+  </head>
+
+  <body>
+    <div id="order-form">
+      <!--Add your form html element here-->
+      <!--In form, give #user_name,#user_number and #user_address as HTML id's to relevant input elements -->
+     <form>
+      <input type="text" id="name" placeholder="Enter name here"/>
+      <input type="number" id="number" placeholder="Enter Number here"/>
+      <input type="text" id="address" placeholder="Enter address here"/>
+      <input id="submit" type="submit">
+     </form>
+     
+    </div>
+  </body>
+</html>
+<script>
+let arr=JSON.parse(localStorage.getItem("userdata")) ||[];
+
+document.querySelector("form").addEventListener("submit",function(event){
+  event.preventDefault();
+  let obj={
+    user_name:document.querySelector("#name").value,
+    user_number:document.querySelector("#number").value,
+    user_address:document.querySelector("#address").value,
+  }
+ if(obj.user_number==true || obj.user_number==false)
+ {
+  arr.push(obj)
+  localStorage.setItem("userdata",JSON.stringify(arr))
+  }
+  else{
+    alert("Product delivered successfully")
+  }
+})
+</script>

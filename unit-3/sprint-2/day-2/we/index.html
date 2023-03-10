@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="pay_img" src="https://content.phonepe.com/ppcms/media/filer_public_thumbnails/filer_public/8e/62/8e626f2d-70ee-432f-9f77-f8dcfce25d3a/pending_-_p2p_-_000001.png__200x400_q85_subsampling-2.png" alt=""/>
+</body>
+</html>
+<script>
+    function server(){
+        return true;
+    }
+    let payment=new Promise(function(resolve,reject){
+        let pin=server();
+
+        setTimeout(function(){
+            if(pin==true)
+        {
+resolve("Payment Successfull")
+
+        }
+        else
+        {
+reject("payment rejected")
+
+        }
+    },3000)
+        })
+        let img=document.querySelector("#pay_img");
+        payment.then(function(res){
+            console.log(res)
+            img.src="https://content.phonepe.com/ppcms/media/filer_public_thumbnails/filer_public/98/a2/98a299a0-6eeb-4aef-841d-844bf6772f88/success_-_p2p_-_000001.png__200x400_q85_subsampling-2.png";
+        })
+ payment.catch(function(rej){
+    console.log(rej)
+    img.src="https://gadgetgrasp.com/wp-content/uploads/Cancel-Pending-Transaction-In-PhonePe.png";
+ })       
+</script>

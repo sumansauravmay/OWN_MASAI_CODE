@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie</title>
+<style>
+    #container{
+        display:grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(3,500px);
+        margin:auto;
+        gap:20px;
+    }
+</style>
+</head>
+<body>
+    <h1>Slide Show</h1>
+    <input type="text" id="image_url"/>
+    <button onclick="addImage()">Submit</button>
+    <button onclick="slideShow()">start Slide Show</button>
+    
+    <div id="container">
+        <!-- append your code here -->
+    </div>
+</body>
+</html>
+<script>
+function addImage(){
+
+    let div=document.querySelector("#append");
+    let image=document.querySelector("#image_url");
+image.src=image_url.value;
+
+    let images=JSON.parse(localStorage.getItem("images"))||[];
+    images.push(image.value);
+    
+    localStorage.setItem("images",JSON.stringify(images));
+    image.value=null;
+}
+
+function slideShow(){
+    let i=0;
+    let images=JSON.parse(localStorage.getItem("images"))||[];
+   
+    let container=document.querySelector("#container");
+   
+    setTimeout(function(){
+        // console.log(i);
+let img=document.createElement("img");
+
+img.src=images[i];
+// container.innerHTML="";
+container.append(img);
+i++;
+
+},1000);
+}
+
+
+
+</script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+  </head>
+  <body>
+    <h1>Final Checkout</h1>
+    <div>
+      <!-- Append the hotel detail inside div with id: "hotel_details" -->
+    </div>
+    <div id="checkout">
+      <div id="hotel_details"></div>
+      <!-- - The hotel details will be appended inside div with id:- "hotel_details".
+  - The input fields will have ids:- "user_name", "user_number", "check_in" and "check_out"
+  - The book button will have id:- "book"   -->
+  <input id="user_name" type="text"/>
+  <input id="check_in" type="text"/>
+  <input id="check_out" type="text"/>
+    </div>
+  </body>
+</html>
+<script>
+ 
+let hotelpic=[];
+    let arr=JSON.parse(localStorage.getItem("pic"));
+    hotelpic.push(arr)
+    // console.log(hotelpic)
+    
+    function append(data){
+      let container=document.querySelector("#hotel_details");
+      container.innerHTML="";
+data.forEach(function(elem){
+
+let img=document.createElement("img")
+img.src=elem.Images.one;
+
+let title=document.createElement("p")
+title.innerText=elem.Title;
+
+let price=document.createElement("p")
+price.innerText=elem.Price;
+
+let rating=document.createElement("p")
+rating.innerText=elem.Rating;
+
+let button=document.createElement("button")
+button.innerText="Book";
+button.addEventListener("click",function(){
+  book(elem)
+})
+
+let div=document.createElement("div")
+
+div.append(img,title,price,rating,button)
+container.append(div)
+})
+
+}
+
+append(hotelpic)
+function book(elem){
+  alert("Hotel booked successfully")
+}
+</script>

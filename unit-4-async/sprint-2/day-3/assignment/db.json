@@ -1,0 +1,29 @@
+{
+  "todo": [
+    {
+      "title": "JavaScript",
+      "status": false,
+      "id": 1665871215349
+    },
+    {
+      "title": "React",
+      "status": false,
+      "id": 1665871221338
+    },
+    {
+      "title": "Html",
+      "status": false,
+      "id": 1665871229100
+    },
+    {
+      "title": "CSS",
+      "status": false,
+      "id": 1665871239032
+    },
+    {
+      "title": "Masai School",
+      "status": false,
+      "id": 1665872800938
+    }
+  ]
+}

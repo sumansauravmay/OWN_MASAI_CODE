@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <style>
+    #container{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:20px;
+    width:100px;
+    /* margin:auto; */
+}
+.navbar{
+ /* padding:10px; */
+ margin-left: 300px;
+ margin-top: -100px;
+ width:300px;
+}
+.navbar1{
+ /* padding:10px; */
+ margin-right: 100px;
+ margin-bottom: 20px;
+}
+.size{
+  width:100px;
+  margin-top:-10px;
+}
+   </style>
+    <title>Youtube</title>
+</head>
+<body>
+ <img class="size" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAIAAgAMBEQACEQEDEQH/xAAcAAEAAgIDAQAAAAAAAAAAAAAABgcFCAIDBAH/xAA7EAACAQIDAgoGCQUAAAAAAAAAAQIDBAUGEQcSEyExQUVRcaHB0SJigZGSohQWJjVSVXSywhUyM1Nk/8QAGwEBAAIDAQEAAAAAAAAAAAAAAAQFAQMGAgf/xAA2EQEAAQICBQgJBAMAAAAAAAAAAQIDBAUGERIxURQhgaGxwdHhIzRBQkNSU3FyFSIzYTJikf/aAAwDAQACEQMRAD8AvEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoAAAAAAAHxvQCA5p2kW2F3dSzwy3V3WpPdqVJS0pxl1LTjb9xCvYuKJ2aeeXR5do7cxNEXbtWzTO7j5IpW2nZgm3was6S5t2k2172Rpxt32L6jRbBRvmZ6fJ457Q8zy6QjFdSoQ8jzyu7xSKdHMvj3NfTLqlnvM8ulZrspQ8jzyq7xbI0fy6Ph9c+Lh9eMzfm9b4IeQ5Te+Zn9By/6fXPiLPGZvzat8MPIxym78x+g5f9Prnxc457zPHpWb7aUPIzGKu8WJyDLp+H1z4u2G0LM8ekIvtoQ8j1yu7xa6tHMun3NXTL10tpuYINb6tKi596jpr7meoxt2GivRbAzumY6fJKcsbS7fELqFpiturWpUajCtCWsG+p68a7/YSbWMiqdVUalHmOjdzD0Tcs1bURvj2+awVyE1zL6AAAAMPm2/nhuXMRu6ct2pCi1B9UnxLvZru1bNEymZdYi/i7dud0y14KJ9YiNQYegAAAAAAAAGJhsDke/niWV8Puas3Opwe5OTfG3F7uvcXmHq27US+VZrYjD425bjdr7ednjcrwAAAiG1SrweT7lJ6OdSnH5k/Ai4ydVqV3o7TtZhR/WvsUeU76UBkA78PoK6v7a3k3GNatCm2uVJtI9UxtVRDRibs2rNdyPZEz/wASPM2RMVwOU61KDvLJcfC0l6UV60eVdq1XYSLuFrt88c8KbL8/w+K1UV/tq4Tu6JRUir/WAAyAAwujZFW4XKjh/puakO6Mv5Fvgp9E+daTW9nH6+MRPbHcm5Lc+AAAEG2vz3crU1+K7gvlk/Ah43+LpdFoxGvHfame5TJUvoYGQD24H99Yf+qpfuRstf5x90TH+q3fxnsbINal8+SIhmfZ/heM79e1X0K8lx79NehN+tHxWjI13C0XOeOaV3l+fYnCaqav3U8J7pVTj+WsUwCq439u+Cb0jXp+lTl7ebsejKy7Yrt73cYDNcNjY9HVz8J3+fQw5pWQGQMLg2Mv7PXi6rxv5IFrgf45+7gNKvXKfxjtlPya5kAAAINtghvZWpP8F3B/LJeJExsei6XRaMVasdq/1nuUyVD6GBkA9uB/fWH/AKql+5Gy1/nH3RMf6rd/Gexsg3oXz5IiGZ9oGF4Pv0LVq9vFxblN+hB+tLwWrIt3FUUc0c8rvL8ixOL1VVftp4z3QqnH8y4pj1Vu/uHwSesKFP0acfZz9r1ZW3L1dyeeXcYHKsNgo9HTz8Z3sOaVkBkDC4NjK+z14/8Asa+SBa4H+Ofu4DSr1yn8Y7ZT8muZAAACIbVKfCZPuWlxwqU5fNp4kXGR6GV3o7Vs5hR/evsUeU76UBkA78Prxtb+2uJJuNGrCo0uVpNM9UTs1RLRibU3bNduPbEwkeZs94rjjnRpTdnZPi4Gk/SkvWlyvsWiJF3FV3OaOaFNl+j+HwuqquNqrjO7ohFVxchFX+oDIAABhdOyKjwWVHPT/Nc1J90Y/wAS3wUarT51pLXtY+Y4REd/emxLc+AAAGHzbYTxLLmIWlKO9UqUW4LrkuNd6Nd6jbtzCZl1+LGLt3J3RMNeGUT6xE64DD0AAAAAAAAAxMtgcj4fPDcr4fb1YOFTg9+cXypybl4l5h6dm3EPlWa34xGNuVxu183RzM8bleAAAHxrUCA5q2b22KXdS9wyurSvUe9UpyjrTk+drqZCvYOK52qZ1Oky7SK7haItXadqmN3HzRStsxzBBvg3aVVzbtVrX3ojTgrq9o0owVW+Jjo83jns8zNF6f0+MuyvDzPPJLvBvp0jy+fe1dEuqWQ8zxf3VN9lWHmeZwt3g2Rn+XT8TqnwcPqPmb8prfHDzMcmu/K9fr2X/U6p8BZHzM+ia3xw8xya78p+vZf9Tqnwc45DzPLoqa7asPM9clu8GJz/AC6PidU+Dths8zPLo+Me2vDzM8ku8GudI8vj3+qXrpbMcwza3/olJc+9Wb09yZ6jBXWivSjBU7omehKMs7NaGHXcLvFbiN1UpvehRhHSCfM3r/d3e0k2cHFM66p1qPMdJLmIom3Zp2Yn2+3yWEloia5l9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//2Q==" alt=""/>
+  
+    <input class="navbar" type="text" id="query" placeholder="Search videos here">
+    <button class="navbar1" onclick="search()">Search</button>
+
+    
+<div id="container"></div>
+
+</body>
+</html>
+<script>
+
+
+// youtube api=  AIzaSyDwOj4_IkBSL9Jnj346rQiGotxQr_dbkA8  ;
+
+// let url=`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=Bahubali&key=AIzaSyDwOj4_IkBSL9Jnj346rQiGotxQr_dbkA8`
+
+let search=async() => {
+let query=document.querySelector("#query").value;
+ let data=await getData(query);
+append(data)
+
+}
+
+let getData=async (query)=> {
+
+    let url=`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${query}&key=AIzaSyDwOj4_IkBSL9Jnj346rQiGotxQr_dbkA8`;
+    let res=await fetch(url);
+    let data=await res.json();
+    return data.items 
+console.log(data) 
+}
+let append=(data)=>{
+container=document.querySelector("#container");
+container.innerHTML="";
+
+data.forEach((elem)=>{
+
+    let image=document.createElement("img")
+   image.src=elem.snippet.thumbnails.medium.url;
+
+let title=document.createElement("p")
+title.innerText=elem.snippet.title;
+
+  let div=document.createElement("div");
+  div.onclick=()=>{
+    saveVideo(elem);
+  }
+
+  div.setAttribute("class","video")
+
+  div.append(image,title)
+  container.append(div);  
+})
+}
+
+let saveVideo=(data)=>{
+localStorage.setItem("video",JSON.stringify(data))
+
+window.location.href="video.html";
+
+}
+search();
+
+</script>

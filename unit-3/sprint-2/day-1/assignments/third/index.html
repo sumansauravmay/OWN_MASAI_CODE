@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select id="filter" onchange="handlefilter()">
+        <option value="All">All</option>
+        <option value="Ascending">Ascending</option>
+        <option value="Decending">Decending</option>
+    </select>
+    <div id="movie">
+
+    </div>
+</body>
+</html>
+<script>
+    let allproduct=[
+        {
+            img:"https://assetscdn1.paytm.com/images/cinema/JJJ-705x750-0ac7b0f0-ed92-11ec-a109-d3eac11f56d1.jpg",
+            movieName:"Jug-Jug Jiyo",
+            rating:"6"
+        },
+        {
+            img:"https://assetscdn1.paytm.com/images/cinema/Thor--Love-And-Thunder--705x750-c9e16160-ee2e-11ec-a109-d3eac11f56d1.jpg",
+            movieName:"Thor",
+            rating:"8"
+        },
+        {
+            img:"https://assetscdn1.paytm.com/images/cinema/Bb2-705x750-36a68220-d65c-11ec-8386-030f3d92e055.jpg",
+            movieName:"Bhool-Bhulaiya",
+            rating:"9"
+        },
+        {
+            img:"https://assetscdn1.paytm.com/images/cinema/Jurassic-World--Dominion-705x750-fb02f490-cd52-11ec-8d22-2363945d80ef.jpg",
+            movieName:"Jurasic Park",
+            rating:"9"
+        },
+        {
+            img:"https://assetscdn1.paytm.com/images/cinema/Samrat-Prithviraj---705x750-e7ace150-df2a-11ec-a98a-e948e193aa73.jpg",
+            movieName:"Prithvi Raj",
+            rating:"7"
+        }
+        ];
+
+        ProductCount=document.querySelector("#movie");
+         
+ let arr=JSON.parse(localStorage.getItem("cart"))||[];
+
+ function displayProduct(data){
+    ProductCount.innerHTML=null;
+    data.forEach(function(elem){
+        let product=document.createElement("div");
+
+        let img=document.createElement("img");
+        img.src=elem.img;
+
+        let name=document.createElement("p");
+        name.innerText=elem.movieName;
+
+let rating=document.createElement("p");
+rating.innerText=elem.rating;
+
+
+product.append(img,name,rating);
+ProductCount.append(product);
+    })
+ }
+
+ displayProduct(allproduct);
+
+
+function handlefilter(){
+    let selected=document.querySelector("#filter").value;
+    if(selected==="Ascending")
+    {
+        arr.sort(function(a,b){
+            if(a.rating>b.rating)return 1;
+            if(a.rating<b.rating)return -1;
+            return 0;
+        })
+        displayProduct(arr);
+    }
+    if(selected=="Decending")
+    {
+        arr.sort(function(a,b){
+            if(a.rating>b.rating)return -1;
+            if(a.rating<b.rating)return 1;
+            return 0;
+        })
+        displayProduct(allproduct);
+    }
+}
+
+</script>

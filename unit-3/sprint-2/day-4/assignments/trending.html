@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+        div{
+            height:200px;
+            width:1000px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            gap:10px;
+        }
+        p{
+            font-size:20px;
+        }
+        input{
+            font-size:20px;
+            padding:10px;
+            width:500px;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="search" placeholder="Search movie here"/>
+<div id="container"></div>
+</body>
+</html>
+<script>
+    async function getData(){
+        let query=document.querySelector("#search").value;
+        let url="https://api.themoviedb.org/3/movie/550?api_key=d9bb5f5393bfb4b836974f25d60661f4";
+        let res=await fetch(url);
+        let data=await res.json();
+        console.log(data.production_companies);
+        append(data.production_companies)
+    }
+    getData();
+
+    let append=(data)=>{
+        let container=document.querySelector("#container")
+        data.forEach((elem)=>{
+
+            let name=document.createElement("h3")
+            name.innerText=elem.name;
+
+            let country=document.createElement("p")
+            country.innerText=elem.origin_country;
+
+            let id=document.createElement("h1")
+            id.innerText=elem.id;
+
+            let logo_path=document.createElement("h1")
+            logo_path.innerText=elem.logo_path;
+
+            div=document.createElement("div");
+            div.append(id,name,country,logo_path);
+
+            container.append(div);
+        })
+    }
+</script>

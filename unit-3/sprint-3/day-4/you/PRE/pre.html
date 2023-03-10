@@ -1,0 +1,75 @@
+<html>
+    <head>
+<title>LLD</title>
+    </head>
+    <body>
+<h1>Low Level Design</h1>
+    </body>
+</html>
+<script>
+
+class Vehicle{
+    constructor(type,reg){
+this.type=type;
+this.registration=reg;
+    }
+
+
+}
+let s1=new Vehicle("Maruti","ssdkdf112")
+
+s1.type="Tata"
+console.log(s1.type)
+
+
+
+
+
+
+
+
+class Vehicle{
+    constructor(type,reg){
+this._type=type;
+this._registration=reg;
+    }
+get type(){
+    return this._type;
+}
+
+}
+let s1=new Vehicle("Maruti","ssdkdf112")
+
+s1._type="Tata"
+console.log(s1.type)
+
+
+
+
+
+
+
+
+
+class Vehicle{
+    constructor(type,reg){
+this._type=type;
+this._registration=reg;
+    }
+get type(){
+    return this._type;
+}
+set type(value){
+
+this._type=value;
+
+}
+}
+let s1=new Vehicle("Maruti","ssdkdf112")
+
+s1.type="Tata"
+console.log(s1)
+
+
+
+</script>

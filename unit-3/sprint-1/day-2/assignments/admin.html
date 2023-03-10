@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+<input type="text" id="name" placeholder="Product name"/>
+<input type="text" id="category" placeholder="Category"/>
+<input type="text" id="image" placeholder="URL"/>
+<input type="text" id="price" placeholder="Enter price"/>
+<select id="gender">
+    <option>M</option>
+    <option>F</option>
+</select>
+<select id="sold">
+    <option value="false">false</option>
+</select>
+<input id="add" type="submit"/>
+    </form>
+</body>
+</html>
+<script>
+
+// function seller(n,c,i,p,g,s)
+// {
+//     this.name=n;
+//     this.category=c;
+//     this.image=i;
+//     this.price=p;
+//     this.gender=g;
+//     this.sold=s;
+ 
+// }
+// function getData(){
+
+//     let name=document.querySelector("#name").value;
+//     let category=document.querySelector("#category").value;
+//     let image=document.querySelector("#image").value;
+//     let price=document.querySelector("#price").value;
+//     let gender=document.querySelector("#gender").value;
+//     let sold=document.querySelector("#sold").value;
+//    }
+
+//     // let submit=document.querySelector("#add");
+   
+// let s1=new seller(name,category,image,price,gender,sold);
+
+// console.log(s1)
+
+let arr=[];
+document.querySelector("form").addEventListener("submit",function(event){
+    event.preventDefault();
+
+    let obj={
+       name: document.querySelector("#name").value,
+     category:document.querySelector("#category").value,
+     image:document.querySelector("#image").value,
+    price:document.querySelector("#price").value,
+    gender:document.querySelector("#gender").value,
+    sold:document.querySelector("#sold").value,
+    }
+    arr.push(obj);
+console.log(arr)
+localStorage.setItem("Products",JSON.stringify(arr));
+})
+
+
+
+
+</script>

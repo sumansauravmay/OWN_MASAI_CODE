@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display:grid;
+            grid-template-columns: repeat(3,1fr);
+            gap:50px;
+            height:200px;
+            width:100px;
+            margin-left:100px;
+            
+        }
+    </style>
+</head>
+<body>
+    <input oninput="getData()" type="text" id="movie" placeholder="Search Movie name">
+
+    <div id="container"></div>
+</body>
+</html>
+<script>
+
+// www.omdbapi.com/?apikey=93992e1b&s=${movie}
+
+async function getData(){
+    let movie=document.querySelector("#movie").value;
+   const url=`http://www.omdbapi.com/?apikey=93992e1b&s=${movie}`;
+    let res=await fetch(url);  
+    let data=await res.json();
+    console.log(data)
+    append(data.Search)
+}
+function append(data){
+    let container=document.querySelector("#container");
+data.forEach(function(elem){
+    let img=document.createElement("img")
+    img.src=elem.Poster;
+
+    let title=document.createElement("h3")
+    title.innerText=elem.Title;
+
+    let div=document.createElement("div")
+    
+    div.append(img,title)
+    container.append(div)
+})
+    
+}
+
+</script>

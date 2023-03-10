@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #navbar{
+        display:flex;
+justify-content: space-around;
+
+      }
+      input{
+        font-size: 20px;
+      }
+      #filter{
+        font-size: 25px;;
+      }
+      #sort{
+        font-size: 25px;;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <h2>Hotel App</h2>
+      <input id="query" oninput="main()" type="text" placeholder="search hotel"
+    
+        
+          <a href="signup.html" id="signup">signup</a>
+        
+       
+          <a href="login.html" id="login">login</a>
+        
+        
+      
+      <!-- the search-box id:- "query"
+ - the log-in and sign-up link will have ids:- "login" and "signup" -->
+    </div>
+    <div id="sorting">
+      <!-- sort by price low to high Id:- "sort_lth"
+ - sort by price high to low Id:- "sort_htl"
+ - Filter Ac hotels Id:- "filter_ac"
+ - Filter Non Ac hotels Id:- "filter_nonac" -->
+ <select id="sort">
+  <option value="all">all</option>
+  <option value="high to low">high to low</option>
+  <option value="low to high">low to high</option>
+ </select>
+
+ <select id="filter">
+  <option value="all">all</option>
+  <option value="ac">ac</option>
+  <option value="non-ac">non-ac</option>
+ </select>
+    </div>
+    <div>
+      <div id="hotels_list"></div>
+      <!-- - Append all fetched hotels inside div with id:- "hotels_list"
+ - Every hotel card will have id:-  "hotel"
+ - The book now button will have class as "book" -->
+    </div>
+  </body>
+</html>
+<script>
+function main(){
+  let query=document.querySelector("#query").value;
+  getData(query)
+}
+
+
+async function getData(query){
+    
+    let url=` https://masai-mock-api.herokuapp.com/hotels/search?city=${query}`;
+    let res=await fetch(url)
+    let data=await res.json();
+    // console.log(data)
+    append(data.hotels)
+}
+function append(data){
+
+let container=document.querySelector("#hotels_list");
+container.innerHTML="";
+data.forEach(function(elem){
+
+let img=document.createElement("img")
+img.src=elem.Images.one;
+
+let title=document.createElement("p")
+title.innerText=elem.Title;
+
+let price=document.createElement("p")
+price.innerText=elem.Price;
+
+let rating=document.createElement("p")
+rating.innerText=elem.Rating;
+
+let ac_status=document.createElement("p")
+ac_status.innerText=elem.Ac;
+
+let button=document.createElement("button")
+button.innerText="Book";
+
+let div=document.createElement("div")
+div.onclick=function(){
+  savepic(elem)
+}
+
+
+div.append(img,title,price,rating,ac_status,button)
+container.append(div)
+})
+}
+let savepic=(data)=>{
+  localStorage.setItem("pic",JSON.stringify(data))
+  window.location.href="checkout.html"
+}
+
+// image, title, price, rating, ac/non-ac status and a book now button
+// hotels: Array(11)
+// 0:
+// Ac: true
+// Images: {one: 'https://r1imghtlak.mmtcdn.com/bd735e8cff9011e8a611…nsize=910:612&crop=910:612;0,24&output-format=jpg', two: 'https://r1imghtlak.mmtcdn.com/1c32b6bcf87e11e886bd0242ac110003.jpg?downsize=377:200&crop=377:200'}
+// Price: 3700
+// Rating: 3.8
+// Rooms: 19
+// Title: "Ginger Goa Panjim"
+</script>

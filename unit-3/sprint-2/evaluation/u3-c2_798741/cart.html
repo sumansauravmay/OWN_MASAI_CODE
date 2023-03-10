@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+       #container{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:20px;
+      text-align: center;
+    }
+    img{
+      width:40%;
+    }
+    </style>
+  </head>
+  <body>
+    <div>
+      <!--Show cart total with id:- "cart_total" here, do not add anything only Total value. Not even "Total - 1200Rs" but like this "1200" -->
+    </div>
+    <div id="container">
+      <!--Show items added to cart here-->
+      <!-- add an remove button to each item so that you can remove that dish from cart, give the button HTML class as 'remove' -->
+    </div>
+<h2>
+  <a href="checkout.html">Checkout</a>
+</h2>
+    <!-- Provide a checkout button with id as "checkout" to go to checkout.html page -->
+  </body>
+</html>
+<script>
+let arr=JSON.parse(localStorage.getItem("cart"))||[];
+
+let container=document.querySelector("#container")
+
+function append(data){
+     
+container.innerHTML="";
+data.forEach(function(elem){
+
+    let div=document.createElement("div")
+
+    let image=document.createElement("img")
+    image.src=elem.image;
+    let name=document.createElement("h3")
+    name.innerText=elem.name;
+
+    let price=document.createElement("p")
+    price.innerText=elem.price;
+
+    let remove=document.createElement("button")
+    remove.innerText="Remove";
+    remove.addEventListener("click",function(){
+      deleteFunc(elem);
+    })
+
+    div.append(image,name,price,remove)
+    container.append(div)
+})
+}
+append(arr)
+
+function  deleteFunc(index)
+{
+arr.splice(index,1)
+localStorage.setItem("cart",JSON.stringify(arr))
+alert("product remove successfully")
+append(arr)
+
+document.querySelector("#container").reset();
+}
+</script>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="type"/>
+    <button>Add Student</button>
+</body>
+</html>
+<script>
+
+// creating sms
+
+// class student{
+//     constructor(n,id){
+//         this.name=n;
+//         this.id=id;
+//     }
+//     signup(username,password) {
+//     // validation of username & password
+
+//     let isValidated=false;
+
+// isValidated=this.validateUsername(username) && this.validatePassword(password)
+
+// if(isValidated){
+//     this.username=username;
+//     this.password=password;
+//     console.log("User registered successfully")
+// }
+// else
+// {
+//     console.log("invalid username or password")
+// }
+// }
+// validateUsername(username){
+//     // checking for rules
+//     return true;
+// }
+// validatePassword(password){
+//     // checking for password
+//     return true;
+// }
+// }
+// let s1=new student("suman","fw18_0575");
+// s1.signup("sumansaurav",12345);
+// console.log(s1);
+
+
+
+
+
+
+// class student{
+//     constructor(n,id){
+//         this.name=n;
+//         this.id=id;
+//     }
+//     signup(username,password) {
+//     // validation of username & password
+
+//     let isValidated=false;
+
+// isValidated=this.validateUsername(username) && this.validatePassword(password)
+
+// if(isValidated){
+//     this.username=username;
+//     this.password=password;
+
+//     console.log("User registered successfully")
+// }
+// else{
+//     console.log("invalid username or password")
+// }
+
+
+// }
+// validateUsername(username){
+//     // checking for rules
+//     return true;
+// }
+// validatePassword(password){
+//     // checking for password
+//     return true;
+// }
+// login(username,password){
+//     if(username===this.username && password===this.password)
+//     {
+//         console.log("logged In !!");
+//     }
+//     else
+//     {
+//         console.log("Authentic failed !");
+//     }
+// }
+
+// }
+// let s1=new student("Suman","fw18_0575")
+
+// // console.log(s1);
+
+
+// s1.signup("sumansaurav","1234")
+
+// s1.login("sumansaurav","1234")
+// console.log(s1)
+
+
+
+
+let arr=[];
+class User{
+    constructor(n,id){
+        this.name=n;
+        this.id=id;
+    }
+    signup(username,password) {
+    // validation of username & password
+
+    let isValidated=false;
+
+isValidated=this.validateUsername(username) && this.validatePassword(password)
+
+if(isValidated){
+    this.username=username;
+    this.password=password;
+
+    console.log("User registered successfully")
+    arr.push(this)
+}
+else{
+    console.log("invalid username or password")
+}
+}
+validateUsername(username){
+    // checking for rules
+    return true;
+}
+validatePassword(password){
+    // checking for password
+    return true;
+}
+login(username,password){
+    if(username===this.username && password===this.password)
+    {
+        console.log("logged In !!");
+    }
+    else
+    {
+        console.log("Authentic failed !");
+    }
+}
+}
+
+
+// cat=>tiger
+// user=>student
+// create student class
+
+
+class student extends User{
+    constructor(n,id){
+        // borrowproperties fromuser
+        super(n,id)
+this.numofAssignment=0;
+    }
+
+submitAssignment(){
+    this.numofAssignment++ ;
+}
+}
+
+class Admin extends User{
+
+    constructor(n,id){
+
+super(n,id);
+
+
+    }
+    removeStudent(id){
+// remove object from array
+arr=arr.filter((elem)=>{
+
+    return elem.id!==id;
+})
+
+    }
+}
+// input value pass to suman
+
+let s1=new student("suman","fw18_0575")
+
+let s2=new student("saurav","fw19_0575")
+
+s1.signup("sumansaurav","1234")
+s2.signup("sumansaurav1","12345")
+
+s1.login("sumansaurav","1234")
+
+s1.submitAssignment();
+
+
+
+// console.log(arr)
+
+
+let n=new Admin("nrupul","masaiweb")
+// console.log(n)
+
+n.removeStudent("fw18_0575");
+console.log(arr)
+
+
+
+
+</script>
